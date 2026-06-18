@@ -37,7 +37,12 @@ export default function LoginPage() {
         navigate('/redirect')
       }, 100)
     } catch (err) {
-      setError('Invalid email or password. Please check your credentials.')
+      const msg = err?.message || err?.error_description || err?.msg
+      if (msg && msg !== '{}') {
+        setError(msg)
+      } else {
+        setError('Invalid email or password. Please check your credentials.')
+      }
     } finally {
       setLoading(false)
     }
@@ -59,7 +64,12 @@ export default function LoginPage() {
       await signUp(signupEmail, signupPassword, signupName, 'client')
       setSignupSuccess(true)
     } catch (err) {
-      setError(err.message || 'Failed to create account. Please try again.')
+      const msg = err?.message || err?.error_description || err?.msg
+      if (msg && msg !== '{}' && typeof msg === 'string') {
+        setError(msg)
+      } else {
+        setError('Failed to create account. Please try again. Check your email and ensure SMTP is configured correctly.')
+      }
     } finally {
       setLoading(false)
     }
