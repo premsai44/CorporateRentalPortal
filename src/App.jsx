@@ -15,6 +15,8 @@ import RequestDetail from './pages/admin/RequestDetail'
 import Inventory from './pages/admin/Inventory'
 import Quotations from './pages/admin/Quotations'
 import AdminKYC from './pages/admin/AdminKYC'
+import Logistics from './pages/admin/Logistics'
+import Returns from './pages/admin/Returns'
 
 // Client Layout & Pages
 import ClientLayout from './components/layout/ClientLayout'
@@ -97,6 +99,8 @@ function AppRoutes() {
         <Route path="inventory" element={<Inventory />} />
         <Route path="quotations" element={<Quotations />} />
         <Route path="kyc" element={<AdminKYC />} />
+        <Route path="logistics" element={<Logistics />} />
+        <Route path="returns" element={<Returns />} />
       </Route>
 
       {/* Client routes */}
