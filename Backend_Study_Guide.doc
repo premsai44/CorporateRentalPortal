@@ -16,23 +16,23 @@
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
       line-height: 1.5;
-      color: #fafaf9;
-      background-color: #18120f;
+      color: #f0fdf4;
+      background-color: #022c22;
       margin: 1in;
     }
     h1 {
       font-size: 24pt;
-      color: #f59e0b;
-      border-bottom: 2px solid #f59e0b;
+      color: #10b981;
+      border-bottom: 2px solid #10b981;
       padding-bottom: 6px;
       margin-bottom: 12pt;
     }
     h2 {
       font-size: 16pt;
-      color: #f59e0b;
+      color: #10b981;
       margin-top: 24pt;
       margin-bottom: 12pt;
-      border-bottom: 1px solid #261c14;
+      border-bottom: 1px solid #0f3f35;
       padding-bottom: 4px;
     }
     p {
