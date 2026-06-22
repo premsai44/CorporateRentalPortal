@@ -91,7 +91,7 @@ export default function ClientRequests() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-slate-50 border-b border-slate-200">
+              <thead className="bg-slate-900 border-b border-slate-700">
                 <tr>
                   <th className="table-th">Event</th>
                   <th className="table-th">Duration</th>
@@ -107,11 +107,11 @@ export default function ClientRequests() {
                   <tr key={req.id} className="table-row">
                     <td className="table-td">
                       <div>
-                        <p className="font-semibold text-slate-900">{req.event_name}</p>
+                        <p className="font-semibold text-slate-50">{req.event_name}</p>
                         <p className="text-xs text-slate-400">{req.companies?.company_name}</p>
                       </div>
                     </td>
-                    <td className="table-td text-sm text-slate-600">
+                    <td className="table-td text-sm text-slate-400">
                       <p>{format(new Date(req.start_date + 'T00:00:00'), 'dd MMM')}</p>
                       <p className="text-xs text-slate-400">to {format(new Date(req.end_date + 'T00:00:00'), 'dd MMM yyyy')}</p>
                     </td>
@@ -150,7 +150,7 @@ export default function ClientRequests() {
           </div>
         )}
         {filtered.length > 0 && (
-          <div className="px-6 py-3 border-t border-slate-100 bg-slate-50 text-xs text-slate-400">
+          <div className="px-6 py-3 border-t border-slate-800 bg-slate-900 text-xs text-slate-400">
             Showing {filtered.length} of {requests.length} requests
           </div>
         )}
@@ -158,3 +158,4 @@ export default function ClientRequests() {
     </div>
   )
 }
+

@@ -206,7 +206,7 @@ export default function Quotations() {
       {/* Summary */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {[
-          { label: 'Total', count: quotations.length, color: 'text-slate-800', bg: 'bg-slate-50' },
+          { label: 'Total', count: quotations.length, color: 'text-slate-200', bg: 'bg-slate-900' },
           { label: 'Sent', count: quotations.filter(q => q.status === 'Sent').length, color: 'text-blue-700', bg: 'bg-blue-50' },
           { label: 'Approved', count: quotations.filter(q => q.status === 'Approved').length, color: 'text-green-700', bg: 'bg-green-50' },
           { label: 'Rejected', count: quotations.filter(q => q.status === 'Rejected').length, color: 'text-red-700', bg: 'bg-red-50' },
@@ -244,7 +244,7 @@ export default function Quotations() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-slate-50 border-b border-slate-200">
+              <thead className="bg-slate-900 border-b border-slate-700">
                 <tr>
                   <th className="table-th">Quotation #</th>
                   <th className="table-th">Company</th>
@@ -259,25 +259,25 @@ export default function Quotations() {
                 {filtered.map(q => (
                   <tr key={q.id} className="table-row">
                     <td className="table-td">
-                      <code className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded font-mono">
+                      <code className="text-xs bg-slate-800/50 text-slate-400 px-2 py-1 rounded font-mono">
                         QUO-{q.id.slice(0, 8).toUpperCase()}
                       </code>
                     </td>
                     <td className="table-td">
                       <div>
-                        <p className="font-semibold text-slate-900">{q.rental_requests?.companies?.company_name || '—'}</p>
+                        <p className="font-semibold text-slate-50">{q.rental_requests?.companies?.company_name || '—'}</p>
                         <p className="text-xs text-slate-400">{q.rental_requests?.companies?.email}</p>
                       </div>
                     </td>
                     <td className="table-td">
                       <div>
-                        <p className="font-medium text-slate-700">{q.rental_requests?.event_name || '—'}</p>
+                        <p className="font-medium text-slate-300">{q.rental_requests?.event_name || '—'}</p>
                         <p className="text-xs text-slate-400">
                           {q.rental_requests?.start_date} → {q.rental_requests?.end_date}
                         </p>
                       </div>
                     </td>
-                    <td className="table-td font-bold text-slate-900 text-base">
+                    <td className="table-td font-bold text-slate-50 text-base">
                       ₹{Number(q.total_amount).toLocaleString('en-IN')}
                     </td>
                     <td className="table-td">
@@ -328,9 +328,9 @@ export default function Quotations() {
           <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
             <CheckCircle size={24} className="text-green-600" />
           </div>
-          <p className="text-slate-700 font-semibold mb-1">Approve this quotation?</p>
+          <p className="text-slate-300 font-semibold mb-1">Approve this quotation?</p>
           <p className="text-slate-400 text-sm mb-1">
-            Amount: <strong className="text-slate-700">₹{Number(actionModal?.quotation?.total_amount || 0).toLocaleString('en-IN')}</strong>
+            Amount: <strong className="text-slate-300">₹{Number(actionModal?.quotation?.total_amount || 0).toLocaleString('en-IN')}</strong>
           </p>
           <p className="text-slate-400 text-sm mb-6">The request status will be updated to Approved.</p>
           <div className="flex gap-3 justify-center">
@@ -350,7 +350,7 @@ export default function Quotations() {
           <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-4">
             <XCircle size={24} className="text-red-600" />
           </div>
-          <p className="text-slate-700 font-semibold mb-1">Reject this quotation?</p>
+          <p className="text-slate-300 font-semibold mb-1">Reject this quotation?</p>
           <p className="text-slate-400 text-sm mb-6">The request will be marked as Rejected.</p>
           <div className="flex gap-3 justify-center">
             <button onClick={() => setActionModal(null)} className="btn-secondary">Cancel</button>
@@ -364,3 +364,4 @@ export default function Quotations() {
     </div>
   )
 }
+

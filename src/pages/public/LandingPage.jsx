@@ -37,41 +37,41 @@ export default function LandingPage() {
   const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className="min-h-screen bg-slate-800 font-sans">
       {/* Navbar */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100 shadow-sm">
+      <header className="sticky top-0 z-50 bg-slate-800/95 backdrop-blur-sm border-b border-slate-800 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-xl bg-primary-600 flex items-center justify-center">
               <Building2 size={18} className="text-white" />
             </div>
-            <span className="font-bold text-slate-900 text-lg">CorpRental<span className="text-primary-600">Pro</span></span>
+            <span className="font-bold text-slate-50 text-lg">CorpRental<span className="text-primary-600">Pro</span></span>
           </div>
 
           <nav className="hidden md:flex items-center gap-8">
             {['Services', 'How It Works', 'About', 'Contact'].map(item => (
               <a key={item} href={`#${item.toLowerCase().replace(/ /g, '-')}`}
-                className="text-sm font-medium text-slate-600 hover:text-primary-600 transition-colors">
+                className="text-sm font-medium text-slate-400 hover:text-primary-600 transition-colors">
                 {item}
               </a>
             ))}
           </nav>
 
           <div className="hidden md:flex items-center gap-3">
-            <Link to="/login" className="btn-secondary btn-sm">Admin Login</Link>
+            <Link to="/login" className="btn-secondary btn-sm">Login</Link>
             <Link to="/request" className="btn-primary btn-sm">Get a Quote</Link>
           </div>
 
-          <button className="md:hidden p-2 rounded-lg text-slate-600" onClick={() => setMenuOpen(!menuOpen)}>
+          <button className="md:hidden p-2 rounded-lg text-slate-400" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
 
         {menuOpen && (
-          <div className="md:hidden bg-white border-t border-slate-100 px-6 py-4 flex flex-col gap-4">
+          <div className="md:hidden bg-slate-800 border-t border-slate-800 px-6 py-4 flex flex-col gap-4">
             {['Services', 'How It Works', 'About', 'Contact'].map(item => (
               <a key={item} href={`#${item.toLowerCase().replace(/ /g, '-')}`}
-                className="text-sm font-medium text-slate-600" onClick={() => setMenuOpen(false)}>
+                className="text-sm font-medium text-slate-400" onClick={() => setMenuOpen(false)}>
                 {item}
               </a>
             ))}
@@ -87,7 +87,7 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary-900/90 to-primary-600/80" />
         <div className="relative max-w-7xl mx-auto px-6 py-28 md:py-40">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 
+            <div className="inline-flex items-center gap-2 bg-slate-800/10 backdrop-blur-sm border border-white/20 
                             rounded-full px-4 py-1.5 mb-6">
               <Star size={13} className="text-amber-400 fill-amber-400" />
               <span className="text-white/90 text-xs font-medium">Trusted by 200+ Corporate Clients Across India</span>
@@ -102,13 +102,13 @@ export default function LandingPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/request"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-primary-700 
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-800 text-primary-700 
                            font-bold rounded-xl hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl text-base">
                 Request a Quote <ArrowRight size={18} />
               </Link>
               <a href="#how-it-works"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 text-white 
-                           font-semibold rounded-xl border border-white/30 hover:bg-white/20 transition-all text-base">
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-800/10 text-white 
+                           font-semibold rounded-xl border border-white/30 hover:bg-slate-800/20 transition-all text-base">
                 See How It Works <ChevronDown size={18} />
               </a>
             </div>
@@ -116,7 +116,7 @@ export default function LandingPage() {
         </div>
 
         {/* Stats Bar */}
-        <div className="relative bg-white/10 backdrop-blur-sm border-t border-white/10">
+        <div className="relative bg-slate-800/10 backdrop-blur-sm border-t border-white/10">
           <div className="max-w-7xl mx-auto px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map(({ value, label }) => (
               <div key={label} className="text-center">
@@ -129,11 +129,11 @@ export default function LandingPage() {
       </section>
 
       {/* Services / Devices */}
-      <section id="services" className="py-24 bg-slate-50">
+      <section id="services" className="py-24 bg-slate-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <p className="text-primary-600 font-semibold text-sm uppercase tracking-wider mb-3">Our Equipment</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-50 mb-4">
               World-Class Devices, On Demand
             </h2>
             <p className="text-slate-500 text-lg max-w-2xl mx-auto">
@@ -150,7 +150,7 @@ export default function LandingPage() {
                                   group-hover:scale-110 transition-transform duration-300`}>
                   <Icon size={26} />
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">{name}</h3>
+                <h3 className="text-lg font-bold text-slate-50 mb-2">{name}</h3>
                 <p className="text-slate-500 text-sm mb-4 leading-relaxed">{desc}</p>
                 <div className="flex items-center justify-between">
                   <span className="text-primary-600 font-bold">Starting {from}</span>
@@ -163,7 +163,7 @@ export default function LandingPage() {
             {/* CTA Card */}
             <div className="hero-gradient rounded-xl p-6 text-white flex flex-col justify-between">
               <div>
-                <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center mb-5">
+                <div className="w-14 h-14 rounded-2xl bg-slate-800/20 flex items-center justify-center mb-5">
                   <Users size={26} className="text-white" />
                 </div>
                 <h3 className="text-lg font-bold mb-2">Custom Packages</h3>
@@ -172,7 +172,7 @@ export default function LandingPage() {
                 </p>
               </div>
               <Link to="/request"
-                className="inline-flex items-center gap-2 bg-white text-primary-700 font-semibold px-5 py-2.5 
+                className="inline-flex items-center gap-2 bg-slate-800 text-primary-700 font-semibold px-5 py-2.5 
                            rounded-lg hover:bg-blue-50 transition-colors text-sm w-fit">
                 Request Custom <ArrowRight size={14} />
               </Link>
@@ -182,11 +182,11 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="py-24 bg-white">
+      <section id="how-it-works" className="py-24 bg-slate-800">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <p className="text-primary-600 font-semibold text-sm uppercase tracking-wider mb-3">Process</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">How It Works</h2>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-50 mb-4">How It Works</h2>
             <p className="text-slate-500 text-lg max-w-2xl mx-auto">
               From request to delivery in 6 simple steps. We handle everything so you can focus on your event.
             </p>
@@ -201,7 +201,7 @@ export default function LandingPage() {
                     {num}
                   </div>
                   <div>
-                    <h3 className="font-bold text-slate-900 mb-2">{title}</h3>
+                    <h3 className="font-bold text-slate-50 mb-2">{title}</h3>
                     <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
                   </div>
                 </div>
@@ -232,7 +232,7 @@ export default function LandingPage() {
                   { icon: Users, text: 'Serving 200+ corporate clients across Pan India' },
                 ].map(({ icon: Icon, text }) => (
                   <div key={text} className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-slate-800/10 flex items-center justify-center flex-shrink-0">
                       <Icon size={16} className="text-blue-300" />
                     </div>
                     <span className="text-white/80 text-sm">{text}</span>
@@ -240,7 +240,7 @@ export default function LandingPage() {
                 ))}
               </div>
               <Link to="/request"
-                className="inline-flex items-center gap-2 mt-8 px-7 py-3.5 bg-white text-primary-700 
+                className="inline-flex items-center gap-2 mt-8 px-7 py-3.5 bg-slate-800 text-primary-700 
                            font-bold rounded-xl hover:bg-blue-50 transition-all">
                 Start Your Request <ArrowRight size={16} />
               </Link>
@@ -264,7 +264,7 @@ export default function LandingPage() {
       </section>
 
       {/* Trusted Clients */}
-      <section className="py-16 bg-slate-50 border-y border-slate-200">
+      <section className="py-16 bg-slate-900 border-y border-slate-700">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <p className="text-slate-400 text-sm font-medium mb-8 uppercase tracking-wider">Trusted by India's Leading Companies</p>
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
@@ -276,13 +276,13 @@ export default function LandingPage() {
       </section>
 
       {/* Contact / CTA Section */}
-      <section id="contact" className="py-24 bg-white">
+      <section id="contact" className="py-24 bg-slate-800">
         <div className="max-w-7xl mx-auto px-6">
           <div className="card p-10 md:p-16 text-center max-w-3xl mx-auto">
             <div className="w-16 h-16 rounded-2xl bg-primary-50 flex items-center justify-center mx-auto mb-6">
               <Phone size={26} className="text-primary-600" />
             </div>
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-4">Ready to Get Started?</h2>
+            <h2 className="text-3xl font-extrabold text-slate-50 mb-4">Ready to Get Started?</h2>
             <p className="text-slate-500 text-lg mb-8 leading-relaxed">
               Fill out our bulk rental request form and get a customized quotation within 24 hours.
               No commitment required.
@@ -295,7 +295,7 @@ export default function LandingPage() {
                 <Phone size={18} /> Call Us Now
               </a>
             </div>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-10 pt-8 border-t border-slate-100">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-10 pt-8 border-t border-slate-800">
               <div className="flex items-center gap-2 text-slate-500 text-sm">
                 <Mail size={15} className="text-primary-500" />
                 <span>hello@corprental.com</span>
@@ -327,7 +327,7 @@ export default function LandingPage() {
               © {new Date().getFullYear()} CorpRentalPro. All rights reserved. Built for corporate excellence.
             </p>
             <div className="flex items-center gap-4">
-              <Link to="/login" className="text-slate-400 hover:text-white text-sm transition-colors">Admin Login</Link>
+              <Link to="/login" className="text-slate-400 hover:text-white text-sm transition-colors">Login</Link>
               <Link to="/request" className="text-slate-400 hover:text-white text-sm transition-colors">Get a Quote</Link>
             </div>
           </div>
@@ -336,3 +336,4 @@ export default function LandingPage() {
     </div>
   )
 }
+

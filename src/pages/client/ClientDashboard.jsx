@@ -44,7 +44,7 @@ export default function ClientDashboard() {
     <div className="space-y-6 animate-in">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-extrabold text-slate-900">
+        <h1 className="text-2xl font-extrabold text-slate-50">
           My Dashboard
         </h1>
         <p className="text-slate-400 text-sm mt-0.5">
@@ -66,7 +66,7 @@ export default function ClientDashboard() {
           <div className="w-20 h-20 rounded-2xl bg-primary-50 flex items-center justify-center mx-auto mb-5">
             <PlusCircle size={36} className="text-primary-400" />
           </div>
-          <h2 className="text-xl font-bold text-slate-800 mb-2">No Requests Yet</h2>
+          <h2 className="text-xl font-bold text-slate-200 mb-2">No Requests Yet</h2>
           <p className="text-slate-400 mb-6 max-w-sm mx-auto">
             Submit your first bulk rental request and we'll get back to you with a custom quotation within 24 hours.
           </p>
@@ -78,10 +78,10 @@ export default function ClientDashboard() {
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
           {/* Recent Requests */}
           <div className="xl:col-span-2 card">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800">
               <div className="flex items-center gap-2">
                 <FileText size={18} className="text-primary-600" />
-                <h2 className="font-bold text-slate-800">Recent Requests</h2>
+                <h2 className="font-bold text-slate-200">Recent Requests</h2>
               </div>
               <Link to="/client/requests" className="text-xs text-primary-600 font-semibold flex items-center gap-1 hover:text-primary-700">
                 See all <ArrowRight size={12} />
@@ -89,7 +89,7 @@ export default function ClientDashboard() {
             </div>
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-slate-50 border-b border-slate-100">
+                <thead className="bg-slate-900 border-b border-slate-800">
                   <tr>
                     <th className="table-th">Event</th>
                     <th className="table-th">Date</th>
@@ -102,7 +102,7 @@ export default function ClientDashboard() {
                     <tr key={req.id} className="table-row">
                       <td className="table-td">
                         <div>
-                          <p className="font-semibold text-slate-900">{req.event_name}</p>
+                          <p className="font-semibold text-slate-50">{req.event_name}</p>
                           <p className="text-xs text-slate-400">{req.companies?.company_name}</p>
                         </div>
                       </td>
@@ -112,7 +112,7 @@ export default function ClientDashboard() {
                       <td className="table-td">
                         <StatusBadge status={req.status} />
                       </td>
-                      <td className="table-td font-semibold text-slate-800">
+                      <td className="table-td font-semibold text-slate-200">
                         {req.quotations?.[0]?.total_amount
                           ? <span className="text-green-700">₹{Number(req.quotations[0].total_amount).toLocaleString('en-IN')}</span>
                           : <span className="text-slate-300 font-normal text-xs">Pending</span>}
@@ -128,7 +128,7 @@ export default function ClientDashboard() {
           <div className="card p-6">
             <div className="flex items-center gap-2 mb-5">
               <Activity size={18} className="text-primary-600" />
-              <h2 className="font-bold text-slate-800">Request Status</h2>
+              <h2 className="font-bold text-slate-200">Request Status</h2>
             </div>
             <div className="space-y-3">
               {[
@@ -143,8 +143,8 @@ export default function ClientDashboard() {
               ].filter(s => s.count > 0).map(({ label, count, color }) => (
                 <div key={label} className="flex items-center gap-3">
                   <div className={`w-2 h-2 rounded-full ${color} flex-shrink-0`} />
-                  <span className="text-sm text-slate-600 flex-1">{label}</span>
-                  <span className="font-bold text-slate-800 text-sm">{count}</span>
+                  <span className="text-sm text-slate-400 flex-1">{label}</span>
+                  <span className="font-bold text-slate-200 text-sm">{count}</span>
                 </div>
               ))}
 
@@ -153,7 +153,7 @@ export default function ClientDashboard() {
               )}
             </div>
 
-            <div className="mt-5 pt-5 border-t border-slate-100">
+            <div className="mt-5 pt-5 border-t border-slate-800">
               <Link to="/request" className="btn-primary w-full justify-center text-sm">
                 <PlusCircle size={15} /> New Request
               </Link>
@@ -173,11 +173,11 @@ export default function ClientDashboard() {
           </div>
           <div className="flex gap-3 flex-shrink-0">
             <a href="tel:+911234567890"
-              className="px-5 py-2.5 bg-white text-primary-700 font-semibold rounded-xl text-sm hover:bg-blue-50 transition-colors">
+              className="px-5 py-2.5 bg-slate-800 text-primary-700 font-semibold rounded-xl text-sm hover:bg-blue-50 transition-colors">
               📞 Call Us
             </a>
             <a href="mailto:hello@corprental.com"
-              className="px-5 py-2.5 bg-white/20 text-white font-semibold rounded-xl text-sm border border-white/30 hover:bg-white/30 transition-colors">
+              className="px-5 py-2.5 bg-slate-800/20 text-white font-semibold rounded-xl text-sm border border-white/30 hover:bg-slate-800/30 transition-colors">
               ✉️ Email
             </a>
           </div>
@@ -186,3 +186,4 @@ export default function ClientDashboard() {
     </div>
   )
 }
+

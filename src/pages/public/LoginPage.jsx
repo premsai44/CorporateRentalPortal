@@ -80,13 +80,13 @@ export default function LoginPage() {
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-primary-900 to-slate-900 flex items-center justify-center p-6">
         <div className="absolute inset-0 hero-pattern opacity-30" />
         <div className="relative w-full max-w-md">
-          <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+          <div className="bg-slate-800 rounded-2xl shadow-2xl overflow-hidden">
             <div className="h-1.5 bg-gradient-to-r from-green-400 via-emerald-500 to-teal-500" />
             <div className="p-8 text-center">
               <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
                 <CheckCircle size={32} className="text-green-600" />
               </div>
-              <h2 className="text-2xl font-extrabold text-slate-900 mb-2">Account Created!</h2>
+              <h2 className="text-2xl font-extrabold text-slate-50 mb-2">Account Created!</h2>
               <p className="text-slate-500 mb-6 leading-relaxed">
                 Your corporate client account has been created successfully.
                 {' '}Please check your email to verify your account, then sign in.
@@ -107,7 +107,7 @@ export default function LoginPage() {
       <div className="absolute inset-0 hero-pattern opacity-30" />
 
       <div className="relative w-full max-w-md">
-        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+        <div className="bg-slate-800 rounded-2xl shadow-2xl overflow-hidden">
           {/* Top gradient bar */}
           <div className="h-1.5 bg-gradient-to-r from-primary-400 via-blue-500 to-indigo-500" />
 
@@ -117,18 +117,18 @@ export default function LoginPage() {
               <div className="w-14 h-14 rounded-2xl bg-primary-600 flex items-center justify-center mb-4 shadow-lg shadow-primary-200">
                 <Building2 size={26} className="text-white" />
               </div>
-              <h1 className="text-2xl font-extrabold text-slate-900">CorpRentalPro</h1>
+              <h1 className="text-2xl font-extrabold text-slate-50">CorpRentalPro</h1>
               <p className="text-slate-400 text-sm mt-1">Corporate Bulk Equipment Rental</p>
             </div>
 
             {/* Tabs */}
-            <div className="flex bg-slate-100 rounded-xl p-1 mb-6">
+            <div className="flex bg-slate-800/50 rounded-xl p-1 mb-6">
               <button
                 onClick={() => { setTab('login'); setError('') }}
                 className={`flex-1 py-2 rounded-lg text-sm font-semibold transition-all ${
                   tab === 'login'
-                    ? 'bg-white text-slate-900 shadow-sm'
-                    : 'text-slate-500 hover:text-slate-700'
+                    ? 'bg-slate-800 text-slate-50 shadow-sm'
+                    : 'text-slate-500 hover:text-slate-300'
                 }`}
               >
                 Sign In
@@ -137,8 +137,8 @@ export default function LoginPage() {
                 onClick={() => { setTab('signup'); setError('') }}
                 className={`flex-1 py-2 rounded-lg text-sm font-semibold transition-all ${
                   tab === 'signup'
-                    ? 'bg-white text-slate-900 shadow-sm'
-                    : 'text-slate-500 hover:text-slate-700'
+                    ? 'bg-slate-800 text-slate-50 shadow-sm'
+                    : 'text-slate-500 hover:text-slate-300'
                 }`}
               >
                 Create Account
@@ -174,7 +174,7 @@ export default function LoginPage() {
                       onChange={e => setLoginPassword(e.target.value)}
                       required autoComplete="current-password" />
                     <button type="button" onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-400">
                       {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                     </button>
                   </div>
@@ -226,7 +226,7 @@ export default function LoginPage() {
                       placeholder="Min. 6 characters" value={signupPassword}
                       onChange={e => setSignupPassword(e.target.value)} required minLength={6} />
                     <button type="button" onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-400">
                       {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                     </button>
                   </div>
@@ -271,3 +271,4 @@ export default function LoginPage() {
     </div>
   )
 }
+

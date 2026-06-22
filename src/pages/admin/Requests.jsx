@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
 import StatusBadge from '../../components/ui/StatusBadge'
 import LoadingSpinner from '../../components/ui/LoadingSpinner'
-import { Search, Filter, Eye, RefreshCw } from 'lucide-react'
+import Modal from '../../components/ui/Modal'
+import { Search, Filter, Eye, RefreshCw, Trash2, Loader2, AlertCircle, CheckCircle } from 'lucide-react'
 import { format } from 'date-fns'
 
 const ALL_STATUSES = ['All', 'Pending', 'Under Review', 'Quoted', 'Approved', 'Allocated', 'Delivered', 'Completed', 'Rejected']
@@ -14,6 +15,10 @@ export default function Requests() {
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState('All')
+  const [deleteModal, setDeleteModal] = useState(false)
+  const [deleteTarget, setDeleteTarget] = useState(null)
+  const [deleting, setDeleting] = useState(false)
+  const [toast, setToast] = useState(null)
 
   useEffect(() => { loadRequests() }, [])
 
@@ -31,6 +36,11 @@ export default function Requests() {
     setFiltered(data)
   }, [requests, search, statusFilter])
 
+  function showToast(msg, type = 'success') {
+    setToast({ msg, type })
+    setTimeout(() => setToast(null), 3000)
+  }
+
   async function loadRequests() {
     setLoading(true)
     const { data, error } = await supabase
@@ -43,6 +53,32 @@ export default function Requests() {
       setFiltered(data || [])
     }
     setLoading(false)
+  }
+
+  function confirmDelete(req) {
+    setDeleteTarget(req)
+    setDeleteModal(true)
+  }
+
+  async function handleDelete() {
+    if (!deleteTarget) return
+    setDeleting(true)
+    try {
+      const { error } = await supabase
+        .from('rental_requests')
+        .delete()
+        .eq('id', deleteTarget.id)
+
+      if (error) throw error
+      showToast('Rental request deleted successfully')
+      setDeleteModal(false)
+      setDeleteTarget(null)
+      await loadRequests()
+    } catch (err) {
+      showToast(err.message, 'error')
+    } finally {
+      setDeleting(false)
+    }
   }
 
   return (
@@ -96,7 +132,7 @@ export default function Requests() {
             </div>
           ) : (
             <table className="w-full">
-              <thead className="bg-slate-50 border-b border-slate-200">
+              <thead className="bg-slate-900 border-b border-slate-700">
                 <tr>
                   <th className="table-th">Request ID</th>
                   <th className="table-th">Company</th>
@@ -111,13 +147,13 @@ export default function Requests() {
                 {filtered.map(req => (
                   <tr key={req.id} className="table-row">
                     <td className="table-td">
-                      <code className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">
+                      <code className="text-xs bg-slate-800/50 text-slate-400 px-2 py-0.5 rounded font-mono">
                         {req.id.slice(0, 8)}...
                       </code>
                     </td>
                     <td className="table-td">
                       <div>
-                        <p className="font-semibold text-slate-900">{req.companies?.company_name}</p>
+                        <p className="font-semibold text-slate-50">{req.companies?.company_name}</p>
                         <p className="text-xs text-slate-400">{req.companies?.email}</p>
                       </div>
                     </td>
@@ -135,19 +171,28 @@ export default function Requests() {
                     <td className="table-td">
                       <StatusBadge status={req.status} />
                     </td>
-                    <td className="table-td font-semibold text-slate-800">
+                    <td className="table-td font-semibold text-slate-200">
                       {req.quotations?.[0]?.total_amount
                         ? `₹${Number(req.quotations[0].total_amount).toLocaleString('en-IN')}`
                         : <span className="text-slate-300 font-normal">—</span>}
                     </td>
                     <td className="table-td">
-                      <Link
-                        to={`/admin/requests/${req.id}`}
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary-600 
-                                   hover:text-primary-700 bg-primary-50 hover:bg-primary-100 px-3 py-1.5 rounded-lg transition-colors"
-                      >
-                        <Eye size={13} /> View
-                      </Link>
+                      <div className="flex items-center gap-2">
+                        <Link
+                          to={`/admin/requests/${req.id}`}
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary-600 
+                                     hover:text-primary-700 bg-primary-50 hover:bg-primary-100 px-3 py-1.5 rounded-lg transition-colors"
+                        >
+                          <Eye size={13} /> View
+                        </Link>
+                        <button
+                          onClick={() => confirmDelete(req)}
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-red-600 
+                                     hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg transition-colors"
+                        >
+                          <Trash2 size={13} /> Delete
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -158,11 +203,38 @@ export default function Requests() {
 
         {/* Footer count */}
         {filtered.length > 0 && (
-          <div className="px-6 py-3 border-t border-slate-100 bg-slate-50 text-xs text-slate-400">
+          <div className="px-6 py-3 border-t border-slate-800 bg-slate-900 text-xs text-slate-400">
             Showing {filtered.length} of {requests.length} requests
           </div>
         )}
       </div>
+
+      {/* Delete Confirmation Modal */}
+      <Modal isOpen={deleteModal} onClose={() => setDeleteModal(false)} title="Delete Request" size="sm">
+        <div className="text-center">
+          <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-4">
+            <Trash2 size={24} className="text-red-600" />
+          </div>
+          <p className="text-slate-300 font-semibold mb-1">Delete request for "{deleteTarget?.companies?.company_name}"?</p>
+          <p className="text-slate-400 text-sm mb-6">This action cannot be undone. All items associated with this request will also be deleted.</p>
+          <div className="flex gap-3 justify-center">
+            <button onClick={() => setDeleteModal(false)} className="btn-secondary">Cancel</button>
+            <button onClick={handleDelete} disabled={deleting} className="btn-danger">
+              {deleting ? <><Loader2 size={15} className="animate-spin" /> Deleting...</> : 'Delete Request'}
+            </button>
+          </div>
+        </div>
+      </Modal>
+
+      {/* Toast */}
+      {toast && (
+        <div className={`fixed top-6 right-6 z-50 px-5 py-3 rounded-xl shadow-lg text-white text-sm font-medium flex items-center gap-2 animate-in
+          ${toast.type === 'error' ? 'bg-red-600' : 'bg-green-600'}`}>
+          {toast.type === 'error' ? <AlertCircle size={16} /> : <CheckCircle size={16} />}
+          {toast.msg}
+        </div>
+      )}
     </div>
   )
 }
+

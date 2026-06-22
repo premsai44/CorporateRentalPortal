@@ -91,10 +91,10 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
         {/* Recent Requests Table */}
         <div className="xl:col-span-2 card">
-          <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800">
             <div className="flex items-center gap-2">
               <TrendingUp size={18} className="text-primary-600" />
-              <h2 className="font-bold text-slate-800">Recent Requests</h2>
+              <h2 className="font-bold text-slate-200">Recent Requests</h2>
             </div>
             <Link to="/admin/requests" className="text-xs text-primary-600 hover:text-primary-700 font-semibold flex items-center gap-1">
               See all <ArrowRight size={12} />
@@ -102,7 +102,7 @@ export default function Dashboard() {
           </div>
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-slate-50 border-b border-slate-100">
+              <thead className="bg-slate-900 border-b border-slate-800">
                 <tr>
                   <th className="table-th">Company</th>
                   <th className="table-th">Event</th>
@@ -119,7 +119,7 @@ export default function Dashboard() {
                   </tr>
                 ) : recentRequests.map(r => (
                   <tr key={r.id} className="table-row">
-                    <td className="table-td font-medium text-slate-900">
+                    <td className="table-td font-medium text-slate-50">
                       {r.companies?.company_name || '—'}
                     </td>
                     <td className="table-td">{r.event_name}</td>
@@ -138,9 +138,9 @@ export default function Dashboard() {
 
         {/* Activity Feed */}
         <div className="card">
-          <div className="flex items-center gap-2 px-6 py-4 border-b border-slate-100">
+          <div className="flex items-center gap-2 px-6 py-4 border-b border-slate-800">
             <Activity size={18} className="text-primary-600" />
-            <h2 className="font-bold text-slate-800">Recent Activity</h2>
+            <h2 className="font-bold text-slate-200">Recent Activity</h2>
           </div>
           <div className="px-6 py-4 space-y-4 max-h-80 overflow-y-auto">
             {activity.length === 0 ? (
@@ -151,7 +151,7 @@ export default function Dashboard() {
                   <Activity size={13} className="text-primary-600" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-sm text-slate-700 leading-snug">
+                  <p className="text-sm text-slate-300 leading-snug">
                     <span className="font-medium">{item.rental_requests?.companies?.company_name || 'Request'}</span>
                     {' → '}
                     <StatusBadge status={item.new_status} />
@@ -192,7 +192,7 @@ export default function Dashboard() {
               <Icon size={20} className={color} />
             </div>
             <div>
-              <p className="text-2xl font-extrabold text-slate-900">{value}</p>
+              <p className="text-2xl font-extrabold text-slate-50">{value}</p>
               <p className="text-xs text-slate-400 mt-0.5">{label}</p>
             </div>
           </div>
@@ -201,3 +201,4 @@ export default function Dashboard() {
     </div>
   )
 }
+
