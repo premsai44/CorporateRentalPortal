@@ -8,7 +8,6 @@ import Modal from '../../components/ui/Modal'
 import {
   ArrowLeft, Building2, Calendar, MapPin, Package,
   DollarSign, Clock, CheckCircle, ChevronRight, AlertCircle,
-  DollarSign, Clock, CheckCircle, ChevronRight, AlertCircle,
   Phone, Mail, FileText, FileSignature, Loader2
 } from 'lucide-react'
 import { format } from 'date-fns'
@@ -24,7 +23,6 @@ export default function ClientRequestDetail() {
   const [company, setCompany] = useState(null)
   const [items, setItems] = useState([])
   const [history, setHistory] = useState([])
-  const [quotation, setQuotation] = useState(null)
   const [quotation, setQuotation] = useState(null)
   const [agreement, setAgreement] = useState(null)
   const [loading, setLoading] = useState(true)
