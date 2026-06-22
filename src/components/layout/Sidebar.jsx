@@ -35,7 +35,7 @@ export default function Sidebar({ mobile = false, onClose }) {
           <p className="text-xs text-slate-400">Admin Portal</p>
         </div>
         {mobile && (
-          <button onClick={onClose} className="ml-auto p-1 rounded-lg hover:bg-slate-50 text-slate-9000">
+          <button onClick={onClose} className="ml-auto p-1 rounded-lg hover:bg-slate-50 text-slate-500">
             <X size={16} />
           </button>
         )}

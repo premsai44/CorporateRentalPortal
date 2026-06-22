@@ -78,7 +78,7 @@ export default function ClientRequests() {
         ) : filtered.length === 0 ? (
           <div className="text-center py-20">
             <FileText size={40} className="mx-auto mb-4 text-slate-900" />
-            <p className="font-semibold text-slate-9000 mb-1">No requests found</p>
+            <p className="font-semibold text-slate-500 mb-1">No requests found</p>
             <p className="text-slate-400 text-sm mb-6">
               {requests.length === 0 ? 'Submit your first rental request to get started.' : 'Try adjusting your filters.'}
             </p>
@@ -115,7 +115,7 @@ export default function ClientRequests() {
                       <p>{format(new Date(req.start_date + 'T00:00:00'), 'dd MMM')}</p>
                       <p className="text-xs text-slate-400">to {format(new Date(req.end_date + 'T00:00:00'), 'dd MMM yyyy')}</p>
                     </td>
-                    <td className="table-td text-slate-9000 text-sm max-w-[160px] truncate">
+                    <td className="table-td text-slate-500 text-sm max-w-[160px] truncate">
                       {req.delivery_location}
                     </td>
                     <td className="table-td text-xs text-slate-400">

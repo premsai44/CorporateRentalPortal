@@ -165,7 +165,7 @@ export default function Requests() {
                         </p>
                       </div>
                     </td>
-                    <td className="table-td text-slate-9000 text-xs">
+                    <td className="table-td text-slate-500 text-xs">
                       {format(new Date(req.created_at), 'dd MMM yyyy')}
                     </td>
                     <td className="table-td">

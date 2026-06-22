@@ -113,14 +113,14 @@ export default function RequestForm() {
             <CheckCircle size={40} className="text-green-600" />
           </div>
           <h2 className="text-2xl font-extrabold text-slate-900 mb-3">Request Submitted!</h2>
-          <p className="text-slate-9000 mb-6 leading-relaxed">
+          <p className="text-slate-500 mb-6 leading-relaxed">
             Thank you! Your bulk rental request has been received. Our team will review it and send you a
             customized quotation within <strong>24 hours</strong>.
           </p>
           <div className="bg-slate-50 rounded-xl p-4 mb-6 text-left">
-            <p className="text-sm text-slate-9000">Company: <strong className="text-slate-900">{form.company_name}</strong></p>
-            <p className="text-sm text-slate-9000 mt-1">Event: <strong className="text-slate-900">{form.event_name}</strong></p>
-            <p className="text-sm text-slate-9000 mt-1">Contact: <strong className="text-slate-900">{form.email}</strong></p>
+            <p className="text-sm text-slate-500">Company: <strong className="text-slate-900">{form.company_name}</strong></p>
+            <p className="text-sm text-slate-500 mt-1">Event: <strong className="text-slate-900">{form.event_name}</strong></p>
+            <p className="text-sm text-slate-500 mt-1">Contact: <strong className="text-slate-900">{form.email}</strong></p>
           </div>
 
           {user ? (
@@ -405,7 +405,7 @@ export default function RequestForm() {
                     ].map(({ label, val }) => (
                       Number(val) > 0 && (
                         <div key={label} className="flex items-center gap-2">
-                          <span className="text-slate-9000">{label}:</span>
+                          <span className="text-slate-500">{label}:</span>
                           <span className="font-bold text-primary-600">{val}</span>
                         </div>
                       )

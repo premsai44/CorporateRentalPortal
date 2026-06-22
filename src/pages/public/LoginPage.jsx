@@ -87,7 +87,7 @@ export default function LoginPage() {
                 <CheckCircle size={32} className="text-green-600" />
               </div>
               <h2 className="text-2xl font-extrabold text-slate-900 mb-2">Account Created!</h2>
-              <p className="text-slate-9000 mb-6 leading-relaxed">
+              <p className="text-slate-500 mb-6 leading-relaxed">
                 Your corporate client account has been created successfully.
                 {' '}Please check your email to verify your account, then sign in.
               </p>
@@ -128,7 +128,7 @@ export default function LoginPage() {
                 className={`flex-1 py-2 rounded-lg text-sm font-semibold transition-all ${
                   tab === 'login'
                     ? 'bg-white text-slate-900 shadow-sm'
-                    : 'text-slate-9000 hover:text-slate-700'
+                    : 'text-slate-500 hover:text-slate-700'
                 }`}
               >
                 Sign In
@@ -138,7 +138,7 @@ export default function LoginPage() {
                 className={`flex-1 py-2 rounded-lg text-sm font-semibold transition-all ${
                   tab === 'signup'
                     ? 'bg-white text-slate-900 shadow-sm'
-                    : 'text-slate-9000 hover:text-slate-700'
+                    : 'text-slate-500 hover:text-slate-700'
                 }`}
               >
                 Create Account

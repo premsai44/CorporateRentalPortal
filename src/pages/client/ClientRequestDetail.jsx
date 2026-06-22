@@ -136,7 +136,7 @@ export default function ClientRequestDetail() {
                         : <span className="w-2.5 h-2.5 rounded-full bg-slate-200" />}
                     </div>
                     <span className={`text-xs font-medium text-center leading-tight max-w-[60px] hidden sm:block
-                      ${active ? 'text-primary-600' : done ? 'text-slate-9000' : 'text-slate-700'}`}>
+                      ${active ? 'text-primary-600' : done ? 'text-slate-500' : 'text-slate-700'}`}>
                       {status}
                     </span>
                   </div>
@@ -320,7 +320,7 @@ export default function ClientRequestDetail() {
                     <StatusBadge status={h.new_status} />
                   </div>
                   {h.admin_note && (
-                    <p className="text-sm text-slate-9000 mt-1 italic">"{h.admin_note}"</p>
+                    <p className="text-sm text-slate-500 mt-1 italic">"{h.admin_note}"</p>
                   )}
                   <p className="text-xs text-slate-400 mt-1">
                     {format(new Date(h.changed_at), 'dd MMM yyyy, hh:mm a')}

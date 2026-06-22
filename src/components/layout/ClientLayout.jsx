@@ -35,7 +35,7 @@ export default function ClientLayout() {
           <p className="text-xs text-slate-400">Client Portal</p>
         </div>
         {mobile && (
-          <button onClick={() => setSidebarOpen(false)} className="ml-auto p-1 rounded-lg hover:bg-slate-50 text-slate-9000">
+          <button onClick={() => setSidebarOpen(false)} className="ml-auto p-1 rounded-lg hover:bg-slate-50 text-slate-500">
             <X size={16} />
           </button>
         )}
@@ -124,7 +124,7 @@ export default function ClientLayout() {
                 className="btn-primary btn-sm hidden sm:inline-flex">
                 <PlusCircle size={14} /> New Request
               </Link>
-              <button className="p-2 rounded-lg hover:bg-slate-50 text-slate-9000">
+              <button className="p-2 rounded-lg hover:bg-slate-50 text-slate-500">
                 <Bell size={18} />
               </button>
             </div>

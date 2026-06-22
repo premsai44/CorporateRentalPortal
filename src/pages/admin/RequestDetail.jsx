@@ -382,7 +382,7 @@ export default function RequestDetail() {
       <Modal isOpen={statusModal} onClose={() => setStatusModal(false)} title="Update Request Status">
         <div className="space-y-4">
           <div>
-            <p className="text-sm text-slate-9000 mb-4">Current status: <StatusBadge status={request.status} /></p>
+            <p className="text-sm text-slate-500 mb-4">Current status: <StatusBadge status={request.status} /></p>
             <label className="label">New Status</label>
             <select className="input" value={newStatus} onChange={e => setNewStatus(e.target.value)}>
               {[...STATUS_FLOW, 'Rejected'].map(s => (

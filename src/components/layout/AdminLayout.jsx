@@ -49,7 +49,7 @@ export default function AdminLayout() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <button className="p-2 rounded-lg hover:bg-slate-50 text-slate-9000 relative">
+              <button className="p-2 rounded-lg hover:bg-slate-50 text-slate-500 relative">
                 <Bell size={18} />
                 <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
               </button>

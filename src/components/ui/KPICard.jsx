@@ -46,7 +46,7 @@ export default function KPICard({ title, value, icon: Icon, color = 'blue', tren
     <div className={`card p-6 animate-in border ${c.border} hover:shadow-md transition-all duration-200`}>
       <div className="flex items-start justify-between">
         <div className="flex-1">
-          <p className="text-sm font-medium text-slate-9000 mb-1">{title}</p>
+          <p className="text-sm font-medium text-slate-500 mb-1">{title}</p>
           <p className="text-3xl font-bold text-slate-900 mt-1">{value ?? '—'}</p>
           {subtitle && <p className="text-xs text-slate-400 mt-1">{subtitle}</p>}
           {trend && (

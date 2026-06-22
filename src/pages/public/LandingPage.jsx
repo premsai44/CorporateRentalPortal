@@ -136,7 +136,7 @@ export default function LandingPage() {
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
               World-Class Devices, On Demand
             </h2>
-            <p className="text-slate-9000 text-lg max-w-2xl mx-auto">
+            <p className="text-slate-500 text-lg max-w-2xl mx-auto">
               Choose from our extensive fleet of corporate-grade equipment, available in any quantity for any duration.
             </p>
           </div>
@@ -151,7 +151,7 @@ export default function LandingPage() {
                   <Icon size={26} />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">{name}</h3>
-                <p className="text-slate-9000 text-sm mb-4 leading-relaxed">{desc}</p>
+                <p className="text-slate-500 text-sm mb-4 leading-relaxed">{desc}</p>
                 <div className="flex items-center justify-between">
                   <span className="text-primary-600 font-bold">Starting {from}</span>
                   <ArrowRight size={16} className="text-slate-400 group-hover:text-primary-600 
@@ -187,7 +187,7 @@ export default function LandingPage() {
           <div className="text-center mb-16">
             <p className="text-primary-600 font-semibold text-sm uppercase tracking-wider mb-3">Process</p>
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">How It Works</h2>
-            <p className="text-slate-9000 text-lg max-w-2xl mx-auto">
+            <p className="text-slate-500 text-lg max-w-2xl mx-auto">
               From request to delivery in 6 simple steps. We handle everything so you can focus on your event.
             </p>
           </div>
@@ -202,7 +202,7 @@ export default function LandingPage() {
                   </div>
                   <div>
                     <h3 className="font-bold text-slate-900 mb-2">{title}</h3>
-                    <p className="text-slate-9000 text-sm leading-relaxed">{desc}</p>
+                    <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
                   </div>
                 </div>
               </div>
@@ -283,7 +283,7 @@ export default function LandingPage() {
               <Phone size={26} className="text-primary-600" />
             </div>
             <h2 className="text-3xl font-extrabold text-slate-900 mb-4">Ready to Get Started?</h2>
-            <p className="text-slate-9000 text-lg mb-8 leading-relaxed">
+            <p className="text-slate-500 text-lg mb-8 leading-relaxed">
               Fill out our bulk rental request form and get a customized quotation within 24 hours.
               No commitment required.
             </p>
@@ -296,15 +296,15 @@ export default function LandingPage() {
               </a>
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-10 pt-8 border-t border-slate-100">
-              <div className="flex items-center gap-2 text-slate-9000 text-sm">
+              <div className="flex items-center gap-2 text-slate-500 text-sm">
                 <Mail size={15} className="text-primary-500" />
                 <span>hello@corprental.com</span>
               </div>
-              <div className="flex items-center gap-2 text-slate-9000 text-sm">
+              <div className="flex items-center gap-2 text-slate-500 text-sm">
                 <Phone size={15} className="text-primary-500" />
                 <span>+91 12345 67890</span>
               </div>
-              <div className="flex items-center gap-2 text-slate-9000 text-sm">
+              <div className="flex items-center gap-2 text-slate-500 text-sm">
                 <MapPin size={15} className="text-primary-500" />
                 <span>Pan India Delivery</span>
               </div>
