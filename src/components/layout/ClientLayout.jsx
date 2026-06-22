@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom'
 const navItems = [
   { to: '/client/dashboard', icon: LayoutDashboard, label: 'My Dashboard' },
   { to: '/client/requests', icon: FileText, label: 'My Requests' },
+  { to: '/client/kyc', icon: Building2, label: 'KYC Documents' },
 ]
 
 export default function ClientLayout() {

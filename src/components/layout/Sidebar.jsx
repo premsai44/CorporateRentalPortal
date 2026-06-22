@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import {
-  LayoutDashboard, FileText, Package, Receipt,
+  LayoutDashboard, FileText, Package, Receipt, ShieldCheck,
   LogOut, Menu, X, Monitor, ChevronRight, Building2
 } from 'lucide-react'
 
 const navItems = [
   { to: '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/admin/requests', icon: FileText, label: 'Requests' },
+  { to: '/admin/kyc', icon: ShieldCheck, label: 'KYC Verification' },
   { to: '/admin/inventory', icon: Package, label: 'Inventory' },
   { to: '/admin/quotations', icon: Receipt, label: 'Quotations' },
 ]

@@ -14,12 +14,14 @@ import Requests from './pages/admin/Requests'
 import RequestDetail from './pages/admin/RequestDetail'
 import Inventory from './pages/admin/Inventory'
 import Quotations from './pages/admin/Quotations'
+import AdminKYC from './pages/admin/AdminKYC'
 
 // Client Layout & Pages
 import ClientLayout from './components/layout/ClientLayout'
 import ClientDashboard from './pages/client/ClientDashboard'
 import ClientRequests from './pages/client/ClientRequests'
 import ClientRequestDetail from './pages/client/ClientRequestDetail'
+import ClientKYC from './pages/client/ClientKYC'
 
 // Loading spinner
 function FullPageLoader() {
@@ -94,6 +96,7 @@ function AppRoutes() {
         <Route path="requests/:id" element={<RequestDetail />} />
         <Route path="inventory" element={<Inventory />} />
         <Route path="quotations" element={<Quotations />} />
+        <Route path="kyc" element={<AdminKYC />} />
       </Route>
 
       {/* Client routes */}
@@ -104,6 +107,7 @@ function AppRoutes() {
         <Route path="dashboard" element={<ClientDashboard />} />
         <Route path="requests" element={<ClientRequests />} />
         <Route path="requests/:id" element={<ClientRequestDetail />} />
+        <Route path="kyc" element={<ClientKYC />} />
       </Route>
 
       {/* Fallback */}
