@@ -8,7 +8,7 @@ import LoadingSpinner from '../../components/ui/LoadingSpinner'
 import {
   ArrowLeft, Building2, Calendar, MapPin, Package,
   FileText, Clock, DollarSign, CheckCircle, Loader2,
-  AlertCircle, Edit, ChevronRight
+  AlertCircle, Edit, ChevronRight, FileSignature
 } from 'lucide-react'
 import { format } from 'date-fns'
 
@@ -24,6 +24,7 @@ export default function RequestDetail() {
   const [items, setItems] = useState([])
   const [history, setHistory] = useState([])
   const [quotation, setQuotation] = useState(null)
+  const [agreement, setAgreement] = useState(null)
   const [loading, setLoading] = useState(true)
 
   const [statusModal, setStatusModal] = useState(false)
@@ -49,6 +50,7 @@ export default function RequestDetail() {
       supabase.from('request_items').select('*, devices(name, category, daily_price)').eq('request_id', id),
       supabase.from('status_history').select('*').eq('request_id', id).order('changed_at', { ascending: true }),
       supabase.from('quotations').select('*').eq('request_id', id).maybeSingle(),
+      supabase.from('rental_agreements').select('*').eq('request_id', id).maybeSingle(),
     ])
 
     if (reqRes.data) {
@@ -59,6 +61,7 @@ export default function RequestDetail() {
     setItems(itemsRes.data || [])
     setHistory(histRes.data || [])
     setQuotation(quotRes.data)
+    setAgreement(agreeRes.data)
     setLoading(false)
   }
 
@@ -133,6 +136,21 @@ export default function RequestDetail() {
       showToast(err.message, 'error')
     } finally {
       setSaving(false)
+    }
+  }
+
+  async function handleSendAgreement() {
+    if (!window.confirm('Send rental agreement to client for signature?')) return
+    try {
+      const { error } = await supabase.from('rental_agreements').insert({
+        request_id: id,
+        status: 'Sent'
+      })
+      if (error) throw error
+      showToast('Agreement sent to client')
+      await loadAll()
+    } catch (err) {
+      showToast(err.message, 'error')
     }
   }
 
@@ -247,6 +265,39 @@ export default function RequestDetail() {
               <button onClick={() => { setQuotAmount(String(suggested)); setQuotModal(true) }}
                 className="btn-primary btn-sm mt-4">
                 Generate Now
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Agreement */}
+        <div className="card p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <FileSignature size={18} className="text-primary-600" />
+            <h2 className="font-bold text-slate-200">Agreement</h2>
+          </div>
+          {agreement ? (
+            <div className="space-y-3 text-sm">
+              <div><p className="text-slate-400 text-xs">Status</p><StatusBadge status={agreement.status} /></div>
+              {agreement.status === 'Signed' ? (
+                <>
+                  <div><p className="text-slate-400 text-xs">Signed By</p><p className="font-semibold text-slate-50">{agreement.signed_by_name}</p></div>
+                  <div><p className="text-slate-400 text-xs">Signer Email</p><p className="font-medium text-slate-300">{agreement.signed_by_email}</p></div>
+                  <div><p className="text-slate-400 text-xs">Signed At</p><p className="font-medium text-slate-300">{format(new Date(agreement.signed_at), 'dd MMM yyyy, hh:mm a')}</p></div>
+                </>
+              ) : (
+                <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700 mt-2">
+                  <p className="text-sm text-slate-400">Waiting for client signature.</p>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center py-6 text-center">
+              <FileSignature size={32} className="text-slate-200 mb-3" />
+              <p className="text-slate-400 text-sm">No agreement sent yet</p>
+              <button onClick={handleSendAgreement} disabled={!quotation || quotation.status !== 'Sent'}
+                className="btn-primary btn-sm mt-4 disabled:opacity-50" title={!quotation ? 'Generate Quotation first' : ''}>
+                Send Agreement to Client
               </button>
             </div>
           )}

@@ -4,10 +4,12 @@ import { supabase } from '../../lib/supabase'
 import { useAuth } from '../../contexts/AuthContext'
 import StatusBadge from '../../components/ui/StatusBadge'
 import LoadingSpinner from '../../components/ui/LoadingSpinner'
+import Modal from '../../components/ui/Modal'
 import {
   ArrowLeft, Building2, Calendar, MapPin, Package,
   DollarSign, Clock, CheckCircle, ChevronRight, AlertCircle,
-  Phone, Mail, FileText
+  DollarSign, Clock, CheckCircle, ChevronRight, AlertCircle,
+  Phone, Mail, FileText, FileSignature, Loader2
 } from 'lucide-react'
 import { format } from 'date-fns'
 
@@ -23,7 +25,14 @@ export default function ClientRequestDetail() {
   const [items, setItems] = useState([])
   const [history, setHistory] = useState([])
   const [quotation, setQuotation] = useState(null)
+  const [quotation, setQuotation] = useState(null)
+  const [agreement, setAgreement] = useState(null)
   const [loading, setLoading] = useState(true)
+
+  const [signModal, setSignModal] = useState(false)
+  const [signatureName, setSignatureName] = useState('')
+  const [agreedTerms, setAgreedTerms] = useState(false)
+  const [saving, setSaving] = useState(false)
 
   useEffect(() => { if (user) loadAll() }, [user, id])
 
@@ -35,6 +44,7 @@ export default function ClientRequestDetail() {
       supabase.from('request_items').select('*, devices(name, category, daily_price)').eq('request_id', id),
       supabase.from('status_history').select('*').eq('request_id', id).order('changed_at', { ascending: true }),
       supabase.from('quotations').select('*').eq('request_id', id).maybeSingle(),
+      supabase.from('rental_agreements').select('*').eq('request_id', id).maybeSingle(),
     ])
 
     if (!reqRes.data) { navigate('/client/requests'); return }
@@ -44,7 +54,33 @@ export default function ClientRequestDetail() {
     setItems(itemsRes.data || [])
     setHistory(histRes.data || [])
     setQuotation(quotRes.data)
+    setAgreement(agreeRes.data)
     setLoading(false)
+  }
+
+  async function handleSignAgreement() {
+    if (!signatureName || !agreedTerms) return
+    setSaving(true)
+    try {
+      // 1. Update the agreement
+      const { error: agreeErr } = await supabase.from('rental_agreements').update({
+        signed_by_name: signatureName,
+        signed_by_email: user.email,
+        signed_at: new Date().toISOString(),
+        status: 'Signed'
+      }).eq('id', agreement.id)
+      if (agreeErr) throw agreeErr
+
+      // Note: In a real app, an edge function or DB trigger would auto-update the request status.
+      // For now, we will just update the agreement. The admin can verify and update the request status.
+
+      setSignModal(false)
+      await loadAll()
+    } catch (err) {
+      alert(err.message)
+    } finally {
+      setSaving(false)
+    }
   }
 
   if (loading) return <LoadingSpinner text="Loading request details..." />
@@ -196,6 +232,37 @@ export default function ClientRequestDetail() {
             </div>
           )}
         </div>
+
+        {/* Agreement */}
+        {agreement && agreement.status !== 'Draft' && (
+          <div className="card p-6">
+            <div className="flex items-center gap-2 mb-4">
+              <FileSignature size={18} className="text-primary-600" />
+              <h2 className="font-bold text-slate-200">Rental Agreement</h2>
+            </div>
+            <div className="space-y-3">
+              <div><p className="text-slate-400 text-xs">Agreement Status</p><StatusBadge status={agreement.status} /></div>
+              
+              {agreement.status === 'Sent' ? (
+                <div className="bg-slate-800/50 p-4 rounded-xl border border-primary-500/20 text-center mt-2">
+                  <p className="text-sm text-slate-300 mb-3">Your rental agreement is ready for signature.</p>
+                  <button onClick={() => setSignModal(true)} className="btn-primary w-full justify-center">
+                    Review & Sign
+                  </button>
+                </div>
+              ) : (
+                <div className="bg-green-500/10 p-3 rounded-lg border border-green-500/20 mt-2 space-y-2">
+                  <div className="flex items-center gap-2 text-green-400 mb-2">
+                    <CheckCircle size={16} />
+                    <span className="font-medium text-sm">Digitally Signed</span>
+                  </div>
+                  <div><p className="text-slate-400 text-xs">Signed By</p><p className="text-sm font-semibold text-slate-200">{agreement.signed_by_name}</p></div>
+                  <div><p className="text-slate-400 text-xs">Date</p><p className="text-sm text-slate-300">{format(new Date(agreement.signed_at), 'dd MMM yyyy, hh:mm a')}</p></div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Devices */}
@@ -280,6 +347,41 @@ export default function ClientRequestDetail() {
           </a>
         </div>
       </div>
+
+      {/* Signature Modal */}
+      <Modal isOpen={signModal} onClose={() => setSignModal(false)} title="Sign Rental Agreement">
+        <div className="space-y-4">
+          <div className="h-48 overflow-y-auto bg-slate-900 border border-slate-700 p-4 rounded-lg text-sm text-slate-400 space-y-3">
+            <h3 className="font-bold text-slate-200 mb-2">Terms and Conditions</h3>
+            <p>1. <strong>Equipment Condition:</strong> The equipment must be returned in the same condition as it was delivered, normal wear and tear excepted.</p>
+            <p>2. <strong>Payment:</strong> The client agrees to pay the total quotation amount within 30 days of the invoice date.</p>
+            <p>3. <strong>Liability:</strong> The client is fully responsible for any loss, theft, or damage to the equipment during the rental period.</p>
+            <p>4. <strong>Late Returns:</strong> Late returns will be subject to a daily penalty equal to 1.5x the standard daily rate.</p>
+            <p>5. <strong>Termination:</strong> CorpRentalPro reserves the right to terminate this agreement immediately if the client breaches any terms.</p>
+          </div>
+          
+          <label className="flex items-start gap-3 cursor-pointer p-3 bg-slate-800/50 rounded-lg border border-slate-700 hover:bg-slate-800 transition-colors">
+            <input type="checkbox" className="mt-1 w-4 h-4 rounded border-slate-600 bg-slate-900 text-primary-600 focus:ring-primary-500 focus:ring-offset-slate-800"
+              checked={agreedTerms} onChange={e => setAgreedTerms(e.target.checked)} />
+            <span className="text-sm text-slate-300">
+              I have read and agree to the Terms and Conditions above. I understand this constitutes a legally binding digital signature.
+            </span>
+          </label>
+
+          <div>
+            <label className="label">Type your full legal name to sign</label>
+            <input className="input" type="text" placeholder="John Doe"
+              value={signatureName} onChange={e => setSignatureName(e.target.value)} />
+          </div>
+
+          <div className="flex gap-3 justify-end pt-4 border-t border-slate-800">
+            <button onClick={() => setSignModal(false)} className="btn-secondary">Cancel</button>
+            <button onClick={handleSignAgreement} disabled={saving || !agreedTerms || !signatureName} className="btn-primary">
+              {saving ? <><Loader2 size={15} className="animate-spin" /> Signing...</> : 'Sign Agreement'}
+            </button>
+          </div>
+        </div>
+      </Modal>
     </div>
   )
 }
