@@ -107,20 +107,20 @@ export default function RequestForm() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center p-6">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
         <div className="card p-12 max-w-lg w-full text-center animate-in">
           <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
             <CheckCircle size={40} className="text-green-600" />
           </div>
-          <h2 className="text-2xl font-extrabold text-slate-50 mb-3">Request Submitted!</h2>
-          <p className="text-slate-500 mb-6 leading-relaxed">
+          <h2 className="text-2xl font-extrabold text-slate-900 mb-3">Request Submitted!</h2>
+          <p className="text-slate-9000 mb-6 leading-relaxed">
             Thank you! Your bulk rental request has been received. Our team will review it and send you a
             customized quotation within <strong>24 hours</strong>.
           </p>
-          <div className="bg-slate-900 rounded-xl p-4 mb-6 text-left">
-            <p className="text-sm text-slate-500">Company: <strong className="text-slate-200">{form.company_name}</strong></p>
-            <p className="text-sm text-slate-500 mt-1">Event: <strong className="text-slate-200">{form.event_name}</strong></p>
-            <p className="text-sm text-slate-500 mt-1">Contact: <strong className="text-slate-200">{form.email}</strong></p>
+          <div className="bg-slate-50 rounded-xl p-4 mb-6 text-left">
+            <p className="text-sm text-slate-9000">Company: <strong className="text-slate-900">{form.company_name}</strong></p>
+            <p className="text-sm text-slate-9000 mt-1">Event: <strong className="text-slate-900">{form.event_name}</strong></p>
+            <p className="text-sm text-slate-9000 mt-1">Contact: <strong className="text-slate-900">{form.email}</strong></p>
           </div>
 
           {user ? (
@@ -152,9 +152,9 @@ export default function RequestForm() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-slate-50">
       {/* Header */}
-      <header className="bg-slate-800 border-b border-slate-700 sticky top-0 z-10">
+      <header className="bg-white border-b border-slate-200 sticky top-0 z-10">
         <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 text-slate-400 hover:text-primary-600 transition-colors text-sm font-medium">
             <ArrowLeft size={16} /> Back to Home
@@ -174,7 +174,7 @@ export default function RequestForm() {
               <div className="w-7 h-7 rounded-lg bg-primary-600 flex items-center justify-center">
                 <Building2 size={14} className="text-white" />
               </div>
-              <span className="font-bold text-slate-50 text-sm hidden sm:inline">Bulk Rental Request</span>
+              <span className="font-bold text-slate-900 text-sm hidden sm:inline">Bulk Rental Request</span>
             </div>
           </div>
         </div>
@@ -189,8 +189,8 @@ export default function RequestForm() {
               <div key={i} className="flex-1 flex flex-col items-center gap-1.5">
                 <div className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm border-2 transition-all
                   ${i < step ? 'bg-primary-600 border-primary-600 text-white'
-                    : i === step ? 'bg-slate-800 border-primary-600 text-primary-600'
-                    : 'bg-slate-800 border-slate-700 text-slate-400'}`}>
+                    : i === step ? 'bg-white border-primary-600 text-primary-600'
+                    : 'bg-white border-slate-200 text-slate-400'}`}>
                   {i < step ? <CheckCircle size={16} /> : i + 1}
                 </div>
                 <span className={`text-xs font-medium hidden sm:block ${i === step ? 'text-primary-600' : 'text-slate-400'}`}>
@@ -221,7 +221,7 @@ export default function RequestForm() {
                   <Building2 size={20} className="text-primary-600" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-50">Company Information</h2>
+                  <h2 className="text-xl font-bold text-slate-900">Company Information</h2>
                   <p className="text-slate-400 text-sm">Tell us about your organization</p>
                 </div>
               </div>
@@ -263,7 +263,7 @@ export default function RequestForm() {
                   <Calendar size={20} className="text-blue-600" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-50">Event Information</h2>
+                  <h2 className="text-xl font-bold text-slate-900">Event Information</h2>
                   <p className="text-slate-400 text-sm">Details about your upcoming event or training</p>
                 </div>
               </div>
@@ -307,7 +307,7 @@ export default function RequestForm() {
                   <Monitor size={20} className="text-purple-600" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-50">Device Requirements</h2>
+                  <h2 className="text-xl font-bold text-slate-900">Device Requirements</h2>
                   <p className="text-slate-400 text-sm">Specify quantities for each device type</p>
                 </div>
               </div>
@@ -319,27 +319,27 @@ export default function RequestForm() {
                   { key: 'projectors', label: 'Projectors', desc: 'Full HD projection systems', icon: '📽️' },
                   { key: 'printers', label: 'Printers', desc: 'Laser & inkjet printers', icon: '🖨️' },
                 ].map(({ key, label, desc, icon }) => (
-                  <div key={key} className="flex items-center justify-between p-4 border border-slate-700 rounded-xl hover:border-primary-200 hover:bg-primary-50/30 transition-all">
+                  <div key={key} className="flex items-center justify-between p-4 border border-slate-200 rounded-xl hover:border-primary-200 hover:bg-primary-50/30 transition-all">
                     <div className="flex items-center gap-3">
                       <span className="text-2xl">{icon}</span>
                       <div>
-                        <p className="font-semibold text-slate-200 text-sm">{label}</p>
+                        <p className="font-semibold text-slate-900 text-sm">{label}</p>
                         <p className="text-slate-400 text-xs">{desc}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
                       <button onClick={() => update(key, Math.max(0, Number(form[key]) - 1))}
-                        className="w-8 h-8 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-900 flex items-center justify-center font-bold text-slate-400 transition-colors">
+                        className="w-8 h-8 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 flex items-center justify-center font-bold text-slate-400 transition-colors">
                         −
                       </button>
                       <input
                         type="number" min="0"
                         value={form[key]}
                         onChange={e => update(key, Math.max(0, Number(e.target.value)))}
-                        className="w-16 text-center border border-slate-700 rounded-lg py-1.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-primary-500"
+                        className="w-16 text-center border border-slate-200 rounded-lg py-1.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-primary-500"
                       />
                       <button onClick={() => update(key, Number(form[key]) + 1)}
-                        className="w-8 h-8 rounded-lg border border-slate-700 bg-slate-800 hover:bg-primary-50 flex items-center justify-center font-bold text-primary-600 transition-colors">
+                        className="w-8 h-8 rounded-lg border border-slate-200 bg-white hover:bg-primary-50 flex items-center justify-center font-bold text-primary-600 transition-colors">
                         +
                       </button>
                     </div>
@@ -362,39 +362,39 @@ export default function RequestForm() {
                   <CheckCircle size={20} className="text-green-600" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold text-slate-50">Review & Submit</h2>
+                  <h2 className="text-xl font-bold text-slate-900">Review & Submit</h2>
                   <p className="text-slate-400 text-sm">Verify your details before submitting</p>
                 </div>
               </div>
 
               <div className="space-y-5">
                 {/* Company */}
-                <div className="bg-slate-900 rounded-xl p-5">
-                  <h3 className="font-bold text-slate-300 text-sm mb-3 uppercase tracking-wider">Company</h3>
+                <div className="bg-slate-50 rounded-xl p-5">
+                  <h3 className="font-bold text-slate-700 text-sm mb-3 uppercase tracking-wider">Company</h3>
                   <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div><span className="text-slate-400">Company:</span> <span className="font-medium text-slate-200">{form.company_name}</span></div>
-                    <div><span className="text-slate-400">Contact:</span> <span className="font-medium text-slate-200">{form.contact_person}</span></div>
-                    <div><span className="text-slate-400">Email:</span> <span className="font-medium text-slate-200">{form.email}</span></div>
-                    <div><span className="text-slate-400">Phone:</span> <span className="font-medium text-slate-200">{form.phone}</span></div>
-                    <div className="col-span-2"><span className="text-slate-400">Address:</span> <span className="font-medium text-slate-200">{form.address}</span></div>
+                    <div><span className="text-slate-400">Company:</span> <span className="font-medium text-slate-900">{form.company_name}</span></div>
+                    <div><span className="text-slate-400">Contact:</span> <span className="font-medium text-slate-900">{form.contact_person}</span></div>
+                    <div><span className="text-slate-400">Email:</span> <span className="font-medium text-slate-900">{form.email}</span></div>
+                    <div><span className="text-slate-400">Phone:</span> <span className="font-medium text-slate-900">{form.phone}</span></div>
+                    <div className="col-span-2"><span className="text-slate-400">Address:</span> <span className="font-medium text-slate-900">{form.address}</span></div>
                   </div>
                 </div>
 
                 {/* Event */}
-                <div className="bg-slate-900 rounded-xl p-5">
-                  <h3 className="font-bold text-slate-300 text-sm mb-3 uppercase tracking-wider">Event</h3>
+                <div className="bg-slate-50 rounded-xl p-5">
+                  <h3 className="font-bold text-slate-700 text-sm mb-3 uppercase tracking-wider">Event</h3>
                   <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div className="col-span-2"><span className="text-slate-400">Event:</span> <span className="font-medium text-slate-200">{form.event_name}</span></div>
-                    <div><span className="text-slate-400">Start:</span> <span className="font-medium text-slate-200">{form.start_date}</span></div>
-                    <div><span className="text-slate-400">End:</span> <span className="font-medium text-slate-200">{form.end_date}</span></div>
-                    <div className="col-span-2"><span className="text-slate-400">Location:</span> <span className="font-medium text-slate-200">{form.delivery_location}</span></div>
-                    {form.notes && <div className="col-span-2"><span className="text-slate-400">Notes:</span> <span className="font-medium text-slate-200">{form.notes}</span></div>}
+                    <div className="col-span-2"><span className="text-slate-400">Event:</span> <span className="font-medium text-slate-900">{form.event_name}</span></div>
+                    <div><span className="text-slate-400">Start:</span> <span className="font-medium text-slate-900">{form.start_date}</span></div>
+                    <div><span className="text-slate-400">End:</span> <span className="font-medium text-slate-900">{form.end_date}</span></div>
+                    <div className="col-span-2"><span className="text-slate-400">Location:</span> <span className="font-medium text-slate-900">{form.delivery_location}</span></div>
+                    {form.notes && <div className="col-span-2"><span className="text-slate-400">Notes:</span> <span className="font-medium text-slate-900">{form.notes}</span></div>}
                   </div>
                 </div>
 
                 {/* Devices */}
-                <div className="bg-slate-900 rounded-xl p-5">
-                  <h3 className="font-bold text-slate-300 text-sm mb-3 uppercase tracking-wider">Devices</h3>
+                <div className="bg-slate-50 rounded-xl p-5">
+                  <h3 className="font-bold text-slate-700 text-sm mb-3 uppercase tracking-wider">Devices</h3>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
                     {[
                       { label: '💻 Laptops', val: form.laptops },
@@ -405,7 +405,7 @@ export default function RequestForm() {
                     ].map(({ label, val }) => (
                       Number(val) > 0 && (
                         <div key={label} className="flex items-center gap-2">
-                          <span className="text-slate-500">{label}:</span>
+                          <span className="text-slate-9000">{label}:</span>
                           <span className="font-bold text-primary-600">{val}</span>
                         </div>
                       )
@@ -423,7 +423,7 @@ export default function RequestForm() {
           )}
 
           {/* Navigation Buttons */}
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-slate-800">
+          <div className="flex items-center justify-between mt-8 pt-6 border-t border-slate-100">
             <button onClick={back} disabled={step === 0}
               className="btn-secondary disabled:opacity-40">
               <ArrowLeft size={16} /> Previous

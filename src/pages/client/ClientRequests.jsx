@@ -77,8 +77,8 @@ export default function ClientRequests() {
           <LoadingSpinner text="Loading your requests..." />
         ) : filtered.length === 0 ? (
           <div className="text-center py-20">
-            <FileText size={40} className="mx-auto mb-4 text-slate-200" />
-            <p className="font-semibold text-slate-500 mb-1">No requests found</p>
+            <FileText size={40} className="mx-auto mb-4 text-slate-900" />
+            <p className="font-semibold text-slate-9000 mb-1">No requests found</p>
             <p className="text-slate-400 text-sm mb-6">
               {requests.length === 0 ? 'Submit your first rental request to get started.' : 'Try adjusting your filters.'}
             </p>
@@ -91,7 +91,7 @@ export default function ClientRequests() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-slate-900 border-b border-slate-700">
+              <thead className="bg-slate-50 border-b border-slate-200">
                 <tr>
                   <th className="table-th">Event</th>
                   <th className="table-th">Duration</th>
@@ -107,7 +107,7 @@ export default function ClientRequests() {
                   <tr key={req.id} className="table-row">
                     <td className="table-td">
                       <div>
-                        <p className="font-semibold text-slate-50">{req.event_name}</p>
+                        <p className="font-semibold text-slate-900">{req.event_name}</p>
                         <p className="text-xs text-slate-400">{req.companies?.company_name}</p>
                       </div>
                     </td>
@@ -115,7 +115,7 @@ export default function ClientRequests() {
                       <p>{format(new Date(req.start_date + 'T00:00:00'), 'dd MMM')}</p>
                       <p className="text-xs text-slate-400">to {format(new Date(req.end_date + 'T00:00:00'), 'dd MMM yyyy')}</p>
                     </td>
-                    <td className="table-td text-slate-500 text-sm max-w-[160px] truncate">
+                    <td className="table-td text-slate-9000 text-sm max-w-[160px] truncate">
                       {req.delivery_location}
                     </td>
                     <td className="table-td text-xs text-slate-400">
@@ -150,7 +150,7 @@ export default function ClientRequests() {
           </div>
         )}
         {filtered.length > 0 && (
-          <div className="px-6 py-3 border-t border-slate-800 bg-slate-900 text-xs text-slate-400">
+          <div className="px-6 py-3 border-t border-slate-100 bg-slate-50 text-xs text-slate-400">
             Showing {filtered.length} of {requests.length} requests
           </div>
         )}

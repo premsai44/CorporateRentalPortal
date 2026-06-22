@@ -26,16 +26,16 @@ export default function ClientLayout() {
   const Sidebar = ({ mobile = false }) => (
     <div className="flex flex-col h-full">
       {/* Logo */}
-      <div className="flex items-center gap-3 px-6 py-5 border-b border-slate-800">
+      <div className="flex items-center gap-3 px-6 py-5 border-b border-slate-100">
         <div className="w-9 h-9 rounded-xl bg-primary-600 flex items-center justify-center flex-shrink-0">
           <Monitor size={18} className="text-white" />
         </div>
         <div>
-          <p className="font-bold text-slate-50 text-sm leading-tight">CorpRentalPro</p>
+          <p className="font-bold text-slate-900 text-sm leading-tight">CorpRentalPro</p>
           <p className="text-xs text-slate-400">Client Portal</p>
         </div>
         {mobile && (
-          <button onClick={() => setSidebarOpen(false)} className="ml-auto p-1 rounded-lg hover:bg-slate-800/50 text-slate-500">
+          <button onClick={() => setSidebarOpen(false)} className="ml-auto p-1 rounded-lg hover:bg-slate-50 text-slate-9000">
             <X size={16} />
           </button>
         )}
@@ -65,7 +65,7 @@ export default function ClientLayout() {
       </nav>
 
       {/* User + Sign Out */}
-      <div className="px-4 py-4 border-t border-slate-800">
+      <div className="px-4 py-4 border-t border-slate-100">
         <div className="flex items-center gap-3 px-2 py-2 mb-2">
           <div className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0">
             <span className="text-primary-700 font-bold text-sm">
@@ -73,7 +73,7 @@ export default function ClientLayout() {
             </span>
           </div>
           <div className="min-w-0">
-            <p className="text-sm font-semibold text-slate-200 truncate">{profile?.full_name || 'Client'}</p>
+            <p className="text-sm font-semibold text-slate-900 truncate">{profile?.full_name || 'Client'}</p>
             <p className="text-xs text-slate-400 truncate">{profile?.email}</p>
           </div>
         </div>
@@ -87,17 +87,17 @@ export default function ClientLayout() {
   )
 
   return (
-    <div className="flex h-screen bg-slate-900 overflow-hidden">
+    <div className="flex h-screen bg-slate-50 overflow-hidden">
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex flex-col w-64 bg-slate-800 border-r border-slate-700 flex-shrink-0">
+      <aside className="hidden lg:flex flex-col w-64 bg-white border-r border-slate-200 flex-shrink-0">
         <Sidebar />
       </aside>
 
       {/* Mobile Sidebar */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
-          <div className="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
-          <aside className="absolute left-0 top-0 h-full w-64 bg-slate-800 border-r border-slate-700 z-50 shadow-xl animate-in">
+          <div className="absolute inset-0 bg-slate-50/50 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
+          <aside className="absolute left-0 top-0 h-full w-64 bg-white border-r border-slate-200 z-50 shadow-xl animate-in">
             <Sidebar mobile />
           </aside>
         </div>
@@ -106,15 +106,15 @@ export default function ClientLayout() {
       {/* Main */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Topbar */}
-        <header className="bg-slate-800 border-b border-slate-700 flex-shrink-0">
+        <header className="bg-white border-b border-slate-200 flex-shrink-0">
           <div className="flex items-center justify-between px-6 py-4">
             <div className="flex items-center gap-4">
               <button onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-2 rounded-lg hover:bg-slate-800/50 text-slate-400">
+                className="lg:hidden p-2 rounded-lg hover:bg-slate-50 text-slate-400">
                 <Menu size={20} />
               </button>
               <div>
-                <p className="text-sm font-semibold text-slate-200 hidden sm:block">
+                <p className="text-sm font-semibold text-slate-900 hidden sm:block">
                   Welcome back, {profile?.full_name?.split(' ')[0] || 'there'} 👋
                 </p>
               </div>
@@ -124,7 +124,7 @@ export default function ClientLayout() {
                 className="btn-primary btn-sm hidden sm:inline-flex">
                 <PlusCircle size={14} /> New Request
               </Link>
-              <button className="p-2 rounded-lg hover:bg-slate-800/50 text-slate-500">
+              <button className="p-2 rounded-lg hover:bg-slate-50 text-slate-9000">
                 <Bell size={18} />
               </button>
             </div>

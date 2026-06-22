@@ -189,7 +189,7 @@ export default function RequestDetail() {
       <div className="page-header flex-wrap gap-3">
         <div className="flex items-center gap-3">
           <button onClick={() => navigate('/admin/requests')}
-            className="p-2 rounded-lg border border-slate-700 hover:bg-slate-900 text-slate-400 transition-colors">
+            className="p-2 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-400 transition-colors">
             <ArrowLeft size={16} />
           </button>
           <div>
@@ -216,14 +216,14 @@ export default function RequestDetail() {
         <div className="card p-6">
           <div className="flex items-center gap-2 mb-4">
             <Building2 size={18} className="text-primary-600" />
-            <h2 className="font-bold text-slate-200">Company</h2>
+            <h2 className="font-bold text-slate-900">Company</h2>
           </div>
           <div className="space-y-3 text-sm">
-            <div><p className="text-slate-400 text-xs">Company Name</p><p className="font-semibold text-slate-50">{company?.company_name}</p></div>
-            <div><p className="text-slate-400 text-xs">Contact Person</p><p className="font-medium text-slate-300">{company?.contact_person}</p></div>
-            <div><p className="text-slate-400 text-xs">Email</p><p className="font-medium text-slate-300">{company?.email}</p></div>
-            <div><p className="text-slate-400 text-xs">Phone</p><p className="font-medium text-slate-300">{company?.phone}</p></div>
-            <div><p className="text-slate-400 text-xs">Address</p><p className="font-medium text-slate-300">{company?.address}</p></div>
+            <div><p className="text-slate-400 text-xs">Company Name</p><p className="font-semibold text-slate-900">{company?.company_name}</p></div>
+            <div><p className="text-slate-400 text-xs">Contact Person</p><p className="font-medium text-slate-700">{company?.contact_person}</p></div>
+            <div><p className="text-slate-400 text-xs">Email</p><p className="font-medium text-slate-700">{company?.email}</p></div>
+            <div><p className="text-slate-400 text-xs">Phone</p><p className="font-medium text-slate-700">{company?.phone}</p></div>
+            <div><p className="text-slate-400 text-xs">Address</p><p className="font-medium text-slate-700">{company?.address}</p></div>
           </div>
         </div>
 
@@ -231,15 +231,15 @@ export default function RequestDetail() {
         <div className="card p-6">
           <div className="flex items-center gap-2 mb-4">
             <Calendar size={18} className="text-blue-600" />
-            <h2 className="font-bold text-slate-200">Event</h2>
+            <h2 className="font-bold text-slate-900">Event</h2>
           </div>
           <div className="space-y-3 text-sm">
-            <div><p className="text-slate-400 text-xs">Event Name</p><p className="font-semibold text-slate-50">{request.event_name}</p></div>
-            <div><p className="text-slate-400 text-xs">Start Date</p><p className="font-medium text-slate-300">{format(new Date(request.start_date + 'T00:00:00'), 'dd MMM yyyy')}</p></div>
-            <div><p className="text-slate-400 text-xs">End Date</p><p className="font-medium text-slate-300">{format(new Date(request.end_date + 'T00:00:00'), 'dd MMM yyyy')}</p></div>
+            <div><p className="text-slate-400 text-xs">Event Name</p><p className="font-semibold text-slate-900">{request.event_name}</p></div>
+            <div><p className="text-slate-400 text-xs">Start Date</p><p className="font-medium text-slate-700">{format(new Date(request.start_date + 'T00:00:00'), 'dd MMM yyyy')}</p></div>
+            <div><p className="text-slate-400 text-xs">End Date</p><p className="font-medium text-slate-700">{format(new Date(request.end_date + 'T00:00:00'), 'dd MMM yyyy')}</p></div>
             <div><p className="text-slate-400 text-xs">Duration</p><p className="font-semibold text-primary-600">{duration} day{duration > 1 ? 's' : ''}</p></div>
-            <div><p className="text-slate-400 text-xs">Delivery Location</p><p className="font-medium text-slate-300">{request.delivery_location}</p></div>
-            {request.notes && <div><p className="text-slate-400 text-xs">Notes</p><p className="font-medium text-slate-300">{request.notes}</p></div>}
+            <div><p className="text-slate-400 text-xs">Delivery Location</p><p className="font-medium text-slate-700">{request.delivery_location}</p></div>
+            {request.notes && <div><p className="text-slate-400 text-xs">Notes</p><p className="font-medium text-slate-700">{request.notes}</p></div>}
           </div>
         </div>
 
@@ -247,20 +247,20 @@ export default function RequestDetail() {
         <div className="card p-6">
           <div className="flex items-center gap-2 mb-4">
             <DollarSign size={18} className="text-green-600" />
-            <h2 className="font-bold text-slate-200">Quotation</h2>
+            <h2 className="font-bold text-slate-900">Quotation</h2>
           </div>
           {quotation ? (
             <div className="space-y-3 text-sm">
               <div><p className="text-slate-400 text-xs">Total Amount</p>
-                <p className="text-2xl font-extrabold text-slate-50">₹{Number(quotation.total_amount).toLocaleString('en-IN')}</p>
+                <p className="text-2xl font-extrabold text-slate-900">₹{Number(quotation.total_amount).toLocaleString('en-IN')}</p>
               </div>
               <div><p className="text-slate-400 text-xs">Status</p><StatusBadge status={quotation.status} /></div>
-              <div><p className="text-slate-400 text-xs">Created</p><p className="font-medium text-slate-300">{format(new Date(quotation.created_at), 'dd MMM yyyy')}</p></div>
-              {quotation.quotation_notes && <div><p className="text-slate-400 text-xs">Notes</p><p className="font-medium text-slate-300">{quotation.quotation_notes}</p></div>}
+              <div><p className="text-slate-400 text-xs">Created</p><p className="font-medium text-slate-700">{format(new Date(quotation.created_at), 'dd MMM yyyy')}</p></div>
+              {quotation.quotation_notes && <div><p className="text-slate-400 text-xs">Notes</p><p className="font-medium text-slate-700">{quotation.quotation_notes}</p></div>}
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center py-6 text-center">
-              <DollarSign size={32} className="text-slate-200 mb-3" />
+              <DollarSign size={32} className="text-slate-900 mb-3" />
               <p className="text-slate-400 text-sm">No quotation generated yet</p>
               <button onClick={() => { setQuotAmount(String(suggested)); setQuotModal(true) }}
                 className="btn-primary btn-sm mt-4">
@@ -274,26 +274,26 @@ export default function RequestDetail() {
         <div className="card p-6">
           <div className="flex items-center gap-2 mb-4">
             <FileSignature size={18} className="text-primary-600" />
-            <h2 className="font-bold text-slate-200">Agreement</h2>
+            <h2 className="font-bold text-slate-900">Agreement</h2>
           </div>
           {agreement ? (
             <div className="space-y-3 text-sm">
               <div><p className="text-slate-400 text-xs">Status</p><StatusBadge status={agreement.status} /></div>
               {agreement.status === 'Signed' ? (
                 <>
-                  <div><p className="text-slate-400 text-xs">Signed By</p><p className="font-semibold text-slate-50">{agreement.signed_by_name}</p></div>
-                  <div><p className="text-slate-400 text-xs">Signer Email</p><p className="font-medium text-slate-300">{agreement.signed_by_email}</p></div>
-                  <div><p className="text-slate-400 text-xs">Signed At</p><p className="font-medium text-slate-300">{format(new Date(agreement.signed_at), 'dd MMM yyyy, hh:mm a')}</p></div>
+                  <div><p className="text-slate-400 text-xs">Signed By</p><p className="font-semibold text-slate-900">{agreement.signed_by_name}</p></div>
+                  <div><p className="text-slate-400 text-xs">Signer Email</p><p className="font-medium text-slate-700">{agreement.signed_by_email}</p></div>
+                  <div><p className="text-slate-400 text-xs">Signed At</p><p className="font-medium text-slate-700">{format(new Date(agreement.signed_at), 'dd MMM yyyy, hh:mm a')}</p></div>
                 </>
               ) : (
-                <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700 mt-2">
+                <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 mt-2">
                   <p className="text-sm text-slate-400">Waiting for client signature.</p>
                 </div>
               )}
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center py-6 text-center">
-              <FileSignature size={32} className="text-slate-200 mb-3" />
+              <FileSignature size={32} className="text-slate-900 mb-3" />
               <p className="text-slate-400 text-sm">No agreement sent yet</p>
               <button onClick={handleSendAgreement} disabled={!quotation || quotation.status !== 'Sent'}
                 className="btn-primary btn-sm mt-4 disabled:opacity-50" title={!quotation ? 'Generate Quotation first' : ''}>
@@ -306,13 +306,13 @@ export default function RequestDetail() {
 
       {/* Devices Requested */}
       <div className="card">
-        <div className="flex items-center gap-2 px-6 py-4 border-b border-slate-800">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-slate-100">
           <Package size={18} className="text-purple-600" />
-          <h2 className="font-bold text-slate-200">Requested Devices</h2>
+          <h2 className="font-bold text-slate-900">Requested Devices</h2>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-slate-900 border-b border-slate-800">
+            <thead className="bg-slate-50 border-b border-slate-100">
               <tr>
                 <th className="table-th">Device</th>
                 <th className="table-th">Category</th>
@@ -326,18 +326,18 @@ export default function RequestDetail() {
                 <tr><td colSpan={5} className="table-td text-center text-slate-400 py-8">No items</td></tr>
               ) : items.map(item => (
                 <tr key={item.id} className="table-row">
-                  <td className="table-td font-medium text-slate-50">{item.devices?.name || '—'}</td>
-                  <td className="table-td"><span className="badge bg-slate-800/50 text-slate-400">{item.devices?.category}</span></td>
+                  <td className="table-td font-medium text-slate-900">{item.devices?.name || '—'}</td>
+                  <td className="table-td"><span className="badge bg-slate-50 text-slate-400">{item.devices?.category}</span></td>
                   <td className="table-td font-bold text-primary-600">{item.quantity}</td>
                   <td className="table-td">₹{Number(item.devices?.daily_price || 0).toLocaleString('en-IN')}/day</td>
-                  <td className="table-td font-semibold text-slate-200">
+                  <td className="table-td font-semibold text-slate-900">
                     ₹{(item.quantity * (item.devices?.daily_price || 0) * duration).toLocaleString('en-IN')}
                   </td>
                 </tr>
               ))}
               {items.length > 0 && (
-                <tr className="bg-slate-900">
-                  <td colSpan={4} className="table-td font-bold text-right text-slate-300">Suggested Total</td>
+                <tr className="bg-slate-50">
+                  <td colSpan={4} className="table-td font-bold text-right text-slate-700">Suggested Total</td>
                   <td className="table-td font-extrabold text-green-700 text-base">₹{suggested.toLocaleString('en-IN')}</td>
                 </tr>
               )}
@@ -350,7 +350,7 @@ export default function RequestDetail() {
       <div className="card p-6">
         <div className="flex items-center gap-2 mb-5">
           <Clock size={18} className="text-amber-600" />
-          <h2 className="font-bold text-slate-200">Status Timeline</h2>
+          <h2 className="font-bold text-slate-900">Status Timeline</h2>
         </div>
         <div className="relative">
           {/* Track */}
@@ -359,7 +359,7 @@ export default function RequestDetail() {
             {history.map((h, i) => (
               <div key={h.id} className="flex items-start gap-4 relative">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 z-10 relative
-                  ${i === history.length - 1 ? 'bg-primary-600' : 'bg-slate-800 border-2 border-slate-300'}`}>
+                  ${i === history.length - 1 ? 'bg-primary-600' : 'bg-white border-2 border-slate-300'}`}>
                   {i === history.length - 1
                     ? <CheckCircle size={16} className="text-white" />
                     : <span className="w-2 h-2 rounded-full bg-slate-400" />}
@@ -382,7 +382,7 @@ export default function RequestDetail() {
       <Modal isOpen={statusModal} onClose={() => setStatusModal(false)} title="Update Request Status">
         <div className="space-y-4">
           <div>
-            <p className="text-sm text-slate-500 mb-4">Current status: <StatusBadge status={request.status} /></p>
+            <p className="text-sm text-slate-9000 mb-4">Current status: <StatusBadge status={request.status} /></p>
             <label className="label">New Status</label>
             <select className="input" value={newStatus} onChange={e => setNewStatus(e.target.value)}>
               {[...STATUS_FLOW, 'Rejected'].map(s => (

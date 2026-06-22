@@ -135,9 +135,9 @@ export default function Inventory() {
           const total = catDevices.reduce((sum, d) => sum + d.available_quantity, 0)
           return (
             <div key={cat} className="card p-4 text-center">
-              <p className="text-2xl font-extrabold text-slate-50">{total}</p>
+              <p className="text-2xl font-extrabold text-slate-900">{total}</p>
               <p className="text-xs text-slate-400 mt-0.5">{cat}s</p>
-              <p className="text-xs text-slate-300">{catDevices.length} models</p>
+              <p className="text-xs text-slate-700">{catDevices.length} models</p>
             </div>
           )
         })}
@@ -158,7 +158,7 @@ export default function Inventory() {
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all border
                   ${catFilter === cat
                     ? 'bg-primary-600 text-white border-primary-600'
-                    : 'bg-slate-800 text-slate-400 border-slate-700 hover:border-primary-300 hover:text-primary-600'
+                    : 'bg-white text-slate-400 border-slate-200 hover:border-primary-300 hover:text-primary-600'
                   }`}>
                 {cat}
               </button>
@@ -174,7 +174,7 @@ export default function Inventory() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-slate-900 border-b border-slate-700">
+              <thead className="bg-slate-50 border-b border-slate-200">
                 <tr>
                   <th className="table-th">Device Name</th>
                   <th className="table-th">Category</th>
@@ -194,17 +194,17 @@ export default function Inventory() {
                   </tr>
                 ) : filtered.map(device => (
                   <tr key={device.id} className="table-row">
-                    <td className="table-td font-semibold text-slate-50">{device.name}</td>
+                    <td className="table-td font-semibold text-slate-900">{device.name}</td>
                     <td className="table-td">
                       <span className={`badge ${catColors[device.category] || 'bg-gray-100 text-gray-700'}`}>
                         {device.category}
                       </span>
                     </td>
                     <td className="table-td">
-                      <span className="font-bold text-slate-200">{device.available_quantity}</span>
+                      <span className="font-bold text-slate-900">{device.available_quantity}</span>
                       <span className="text-slate-400 text-xs ml-1">units</span>
                     </td>
-                    <td className="table-td font-semibold text-slate-200">
+                    <td className="table-td font-semibold text-slate-900">
                       ₹{Number(device.daily_price).toLocaleString('en-IN')}/day
                     </td>
                     <td className="table-td">
@@ -235,7 +235,7 @@ export default function Inventory() {
           </div>
         )}
         {filtered.length > 0 && (
-          <div className="px-6 py-3 border-t border-slate-800 bg-slate-900 text-xs text-slate-400">
+          <div className="px-6 py-3 border-t border-slate-100 bg-slate-50 text-xs text-slate-400">
             {filtered.length} of {devices.length} devices
           </div>
         )}
@@ -271,7 +271,7 @@ export default function Inventory() {
                 onChange={e => setForm(f => ({ ...f, daily_price: Number(e.target.value) }))} />
             </div>
           </div>
-          <div className="flex gap-3 justify-end pt-2 border-t border-slate-800">
+          <div className="flex gap-3 justify-end pt-2 border-t border-slate-100">
             <button onClick={() => setModal(false)} className="btn-secondary">Cancel</button>
             <button onClick={handleSave} disabled={saving || !form.name.trim()} className="btn-primary">
               {saving ? <><Loader2 size={15} className="animate-spin" /> Saving...</> : editDevice ? 'Save Changes' : 'Add Device'}
@@ -286,7 +286,7 @@ export default function Inventory() {
           <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-4">
             <Trash2 size={24} className="text-red-600" />
           </div>
-          <p className="text-slate-300 font-semibold mb-1">Delete "{deleteTarget?.name}"?</p>
+          <p className="text-slate-700 font-semibold mb-1">Delete "{deleteTarget?.name}"?</p>
           <p className="text-slate-400 text-sm mb-6">This action cannot be undone. The device will be permanently removed from inventory.</p>
           <div className="flex gap-3 justify-center">
             <button onClick={() => setDeleteModal(false)} className="btn-secondary">Cancel</button>

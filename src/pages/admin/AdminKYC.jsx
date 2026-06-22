@@ -124,7 +124,7 @@ export default function AdminKYC() {
       <div className="card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-slate-800/50 border-b border-slate-700">
+            <thead className="bg-slate-50 border-b border-slate-200">
               <tr>
                 <th className="table-th">Company</th>
                 <th className="table-th">Document Type</th>
@@ -144,7 +144,7 @@ export default function AdminKYC() {
                 documents.map((doc) => (
                   <tr key={doc.id} className="table-row">
                     <td className="table-td">
-                      <div className="font-medium text-slate-50">{doc.companies?.company_name}</div>
+                      <div className="font-medium text-slate-900">{doc.companies?.company_name}</div>
                       <div className="text-xs text-slate-400">{doc.companies?.email}</div>
                     </td>
                     <td className="table-td">
@@ -168,7 +168,7 @@ export default function AdminKYC() {
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => handleViewDocument(doc.document_url)}
-                          className="p-1.5 text-slate-400 hover:text-primary-400 hover:bg-slate-800 rounded transition-colors"
+                          className="p-1.5 text-slate-400 hover:text-primary-400 hover:bg-white rounded transition-colors"
                           title="View Document"
                         >
                           <Eye className="w-4 h-4" />
@@ -179,7 +179,7 @@ export default function AdminKYC() {
                             <button
                               onClick={() => handleVerify(doc.id)}
                               disabled={actionLoading}
-                              className="p-1.5 text-slate-400 hover:text-green-500 hover:bg-slate-800 rounded transition-colors"
+                              className="p-1.5 text-slate-400 hover:text-green-500 hover:bg-white rounded transition-colors"
                               title="Verify"
                             >
                               <CheckCircle className="w-4 h-4" />
@@ -187,7 +187,7 @@ export default function AdminKYC() {
                             <button
                               onClick={() => openRejectModal(doc)}
                               disabled={actionLoading}
-                              className="p-1.5 text-slate-400 hover:text-red-500 hover:bg-slate-800 rounded transition-colors"
+                              className="p-1.5 text-slate-400 hover:text-red-500 hover:bg-white rounded transition-colors"
                               title="Reject"
                             >
                               <XCircle className="w-4 h-4" />
@@ -211,8 +211,8 @@ export default function AdminKYC() {
         title="Reject Document"
       >
         <form onSubmit={handleReject} className="space-y-4">
-          <p className="text-sm text-slate-300">
-            Please provide a reason for rejecting the <strong className="text-slate-50">{selectedDoc?.document_type.replace('_', ' ')}</strong> for <strong className="text-slate-50">{selectedDoc?.companies?.company_name}</strong>.
+          <p className="text-sm text-slate-700">
+            Please provide a reason for rejecting the <strong className="text-slate-900">{selectedDoc?.document_type.replace('_', ' ')}</strong> for <strong className="text-slate-900">{selectedDoc?.companies?.company_name}</strong>.
           </p>
           
           <div>

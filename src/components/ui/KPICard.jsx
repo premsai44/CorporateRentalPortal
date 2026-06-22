@@ -33,10 +33,10 @@ export default function KPICard({ title, value, icon: Icon, color = 'blue', tren
       border: 'border-teal-100',
     },
     slate: {
-      bg: 'bg-slate-900',
+      bg: 'bg-slate-50',
       icon: 'text-slate-400',
-      iconBg: 'bg-slate-800/50',
-      border: 'border-slate-700',
+      iconBg: 'bg-slate-50',
+      border: 'border-slate-200',
     },
   }
 
@@ -46,8 +46,8 @@ export default function KPICard({ title, value, icon: Icon, color = 'blue', tren
     <div className={`card p-6 animate-in border ${c.border} hover:shadow-md transition-all duration-200`}>
       <div className="flex items-start justify-between">
         <div className="flex-1">
-          <p className="text-sm font-medium text-slate-500 mb-1">{title}</p>
-          <p className="text-3xl font-bold text-slate-50 mt-1">{value ?? '—'}</p>
+          <p className="text-sm font-medium text-slate-9000 mb-1">{title}</p>
+          <p className="text-3xl font-bold text-slate-900 mt-1">{value ?? '—'}</p>
           {subtitle && <p className="text-xs text-slate-400 mt-1">{subtitle}</p>}
           {trend && (
             <p className={`text-xs font-medium mt-2 ${trend.positive ? 'text-green-600' : 'text-red-500'}`}>

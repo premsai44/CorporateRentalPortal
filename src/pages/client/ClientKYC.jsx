@@ -132,13 +132,13 @@ export default function ClientKYC() {
         {/* Upload Form */}
         <div className="lg:col-span-1">
           <div className="card p-6">
-            <h2 className="text-lg font-semibold text-slate-50 mb-4 flex items-center gap-2">
+            <h2 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
               <Upload className="w-5 h-5 text-primary-500" />
               Upload Document
             </h2>
             
             {companies.length === 0 ? (
-              <div className="text-sm text-slate-400 bg-slate-800/50 p-4 rounded-lg border border-slate-700">
+              <div className="text-sm text-slate-400 bg-slate-50 p-4 rounded-lg border border-slate-200">
                 You need to submit at least one rental request to register a company before uploading KYC documents.
               </div>
             ) : (
@@ -177,7 +177,7 @@ export default function ClientKYC() {
                   <input 
                     id="file-upload"
                     type="file" 
-                    className="input py-2 text-sm text-slate-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-500 file:text-white hover:file:bg-primary-600"
+                    className="input py-2 text-sm text-slate-700 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-500 file:text-white hover:file:bg-primary-600"
                     onChange={(e) => setFile(e.target.files[0])}
                     required
                     accept=".pdf,.jpg,.jpeg,.png"
@@ -204,8 +204,8 @@ export default function ClientKYC() {
         {/* Uploaded Documents List */}
         <div className="lg:col-span-2">
           <div className="card overflow-hidden">
-            <div className="p-6 border-b border-slate-700">
-              <h2 className="text-lg font-semibold text-slate-50">Your Documents</h2>
+            <div className="p-6 border-b border-slate-200">
+              <h2 className="text-lg font-semibold text-slate-900">Your Documents</h2>
             </div>
             
             {documents.length === 0 ? (
@@ -216,7 +216,7 @@ export default function ClientKYC() {
             ) : (
               <div className="divide-y divide-slate-700">
                 {documents.map((doc) => (
-                  <div key={doc.id} className="p-4 hover:bg-slate-800/50 transition-colors flex items-center justify-between">
+                  <div key={doc.id} className="p-4 hover:bg-slate-50 transition-colors flex items-center justify-between">
                     <div className="flex items-start gap-4">
                       <div className={`p-2 rounded-lg ${
                         doc.status === 'Verified' ? 'bg-green-500/20 text-green-500' : 
@@ -228,7 +228,7 @@ export default function ClientKYC() {
                          <Clock className="w-5 h-5" />}
                       </div>
                       <div>
-                        <h4 className="text-slate-50 font-medium">
+                        <h4 className="text-slate-900 font-medium">
                           {doc.document_type.replace('_', ' ')}
                         </h4>
                         <p className="text-sm text-slate-400">

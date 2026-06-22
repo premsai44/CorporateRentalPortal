@@ -97,7 +97,7 @@ export default function ClientRequestDetail() {
       <div className="page-header flex-wrap gap-3">
         <div className="flex items-center gap-3">
           <button onClick={() => navigate('/client/requests')}
-            className="p-2 rounded-lg border border-slate-700 hover:bg-slate-900 text-slate-400 transition-colors">
+            className="p-2 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-400 transition-colors">
             <ArrowLeft size={16} />
           </button>
           <div>
@@ -111,7 +111,7 @@ export default function ClientRequestDetail() {
       {/* Status Progress Bar */}
       {request?.status !== 'Rejected' && (
         <div className="card p-6">
-          <h2 className="font-bold text-slate-200 mb-5 text-sm">Request Progress</h2>
+          <h2 className="font-bold text-slate-900 mb-5 text-sm">Request Progress</h2>
           <div className="relative">
             {/* Track */}
             <div className="absolute top-4 left-0 right-0 h-0.5 bg-slate-200 z-0">
@@ -129,8 +129,8 @@ export default function ClientRequestDetail() {
                   <div key={status} className="flex flex-col items-center gap-2">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all
                       ${done ? 'bg-primary-600 border-primary-600'
-                        : active ? 'bg-slate-800 border-primary-600'
-                        : 'bg-slate-800 border-slate-700'}`}>
+                        : active ? 'bg-white border-primary-600'
+                        : 'bg-white border-slate-200'}`}>
                       {done
                         ? <CheckCircle size={16} className="text-white" />
                         : active
@@ -138,7 +138,7 @@ export default function ClientRequestDetail() {
                         : <span className="w-2.5 h-2.5 rounded-full bg-slate-200" />}
                     </div>
                     <span className={`text-xs font-medium text-center leading-tight max-w-[60px] hidden sm:block
-                      ${active ? 'text-primary-600' : done ? 'text-slate-500' : 'text-slate-300'}`}>
+                      ${active ? 'text-primary-600' : done ? 'text-slate-9000' : 'text-slate-700'}`}>
                       {status}
                     </span>
                   </div>
@@ -169,10 +169,10 @@ export default function ClientRequestDetail() {
         <div className="card p-6">
           <div className="flex items-center gap-2 mb-4">
             <Building2 size={18} className="text-primary-600" />
-            <h2 className="font-bold text-slate-200">Company Info</h2>
+            <h2 className="font-bold text-slate-900">Company Info</h2>
           </div>
           <div className="space-y-3 text-sm">
-            <div><p className="text-slate-400 text-xs">Company</p><p className="font-semibold text-slate-50">{company?.company_name}</p></div>
+            <div><p className="text-slate-400 text-xs">Company</p><p className="font-semibold text-slate-900">{company?.company_name}</p></div>
             <div><p className="text-slate-400 text-xs">Contact</p><p className="font-medium">{company?.contact_person}</p></div>
             <div className="flex items-center gap-2"><Mail size={13} className="text-slate-400" /><span>{company?.email}</span></div>
             <div className="flex items-center gap-2"><Phone size={13} className="text-slate-400" /><span>{company?.phone}</span></div>
@@ -184,7 +184,7 @@ export default function ClientRequestDetail() {
         <div className="card p-6">
           <div className="flex items-center gap-2 mb-4">
             <Calendar size={18} className="text-blue-600" />
-            <h2 className="font-bold text-slate-200">Event Details</h2>
+            <h2 className="font-bold text-slate-900">Event Details</h2>
           </div>
           <div className="space-y-3 text-sm">
             <div><p className="text-slate-400 text-xs">Event Name</p><p className="font-semibold">{request?.event_name}</p></div>
@@ -200,7 +200,7 @@ export default function ClientRequestDetail() {
         <div className="card p-6">
           <div className="flex items-center gap-2 mb-4">
             <DollarSign size={18} className="text-green-600" />
-            <h2 className="font-bold text-slate-200">Quotation</h2>
+            <h2 className="font-bold text-slate-900">Quotation</h2>
           </div>
           {quotation ? (
             <div className="space-y-3">
@@ -214,7 +214,7 @@ export default function ClientRequestDetail() {
               <div><p className="text-slate-400 text-xs">Quotation Status</p><StatusBadge status={quotation.status} /></div>
               <div><p className="text-slate-400 text-xs">Issued On</p><p className="text-sm font-medium">{format(new Date(quotation.created_at), 'dd MMM yyyy')}</p></div>
               {quotation.quotation_notes && (
-                <div className="bg-slate-900 rounded-xl p-3">
+                <div className="bg-slate-50 rounded-xl p-3">
                   <p className="text-xs text-slate-400 mb-1">Terms & Notes</p>
                   <p className="text-sm text-slate-400">{quotation.quotation_notes}</p>
                 </div>
@@ -222,7 +222,7 @@ export default function ClientRequestDetail() {
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center py-8 text-center">
-              <div className="w-12 h-12 rounded-full bg-slate-800/50 flex items-center justify-center mb-3">
+              <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center mb-3">
                 <Clock size={22} className="text-slate-400" />
               </div>
               <p className="font-medium text-slate-400">Quotation Pending</p>
@@ -238,14 +238,14 @@ export default function ClientRequestDetail() {
           <div className="card p-6">
             <div className="flex items-center gap-2 mb-4">
               <FileSignature size={18} className="text-primary-600" />
-              <h2 className="font-bold text-slate-200">Rental Agreement</h2>
+              <h2 className="font-bold text-slate-900">Rental Agreement</h2>
             </div>
             <div className="space-y-3">
               <div><p className="text-slate-400 text-xs">Agreement Status</p><StatusBadge status={agreement.status} /></div>
               
               {agreement.status === 'Sent' ? (
-                <div className="bg-slate-800/50 p-4 rounded-xl border border-primary-500/20 text-center mt-2">
-                  <p className="text-sm text-slate-300 mb-3">Your rental agreement is ready for signature.</p>
+                <div className="bg-slate-50 p-4 rounded-xl border border-primary-500/20 text-center mt-2">
+                  <p className="text-sm text-slate-700 mb-3">Your rental agreement is ready for signature.</p>
                   <button onClick={() => setSignModal(true)} className="btn-primary w-full justify-center">
                     Review & Sign
                   </button>
@@ -256,8 +256,8 @@ export default function ClientRequestDetail() {
                     <CheckCircle size={16} />
                     <span className="font-medium text-sm">Digitally Signed</span>
                   </div>
-                  <div><p className="text-slate-400 text-xs">Signed By</p><p className="text-sm font-semibold text-slate-200">{agreement.signed_by_name}</p></div>
-                  <div><p className="text-slate-400 text-xs">Date</p><p className="text-sm text-slate-300">{format(new Date(agreement.signed_at), 'dd MMM yyyy, hh:mm a')}</p></div>
+                  <div><p className="text-slate-400 text-xs">Signed By</p><p className="text-sm font-semibold text-slate-900">{agreement.signed_by_name}</p></div>
+                  <div><p className="text-slate-400 text-xs">Date</p><p className="text-sm text-slate-700">{format(new Date(agreement.signed_at), 'dd MMM yyyy, hh:mm a')}</p></div>
                 </div>
               )}
             </div>
@@ -267,13 +267,13 @@ export default function ClientRequestDetail() {
 
       {/* Devices */}
       <div className="card">
-        <div className="flex items-center gap-2 px-6 py-4 border-b border-slate-800">
+        <div className="flex items-center gap-2 px-6 py-4 border-b border-slate-100">
           <Package size={18} className="text-purple-600" />
-          <h2 className="font-bold text-slate-200">Requested Devices</h2>
+          <h2 className="font-bold text-slate-900">Requested Devices</h2>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-slate-900 border-b border-slate-800">
+            <thead className="bg-slate-50 border-b border-slate-100">
               <tr>
                 <th className="table-th">Device</th>
                 <th className="table-th">Category</th>
@@ -285,11 +285,11 @@ export default function ClientRequestDetail() {
             <tbody className="divide-y divide-slate-100">
               {items.map(item => (
                 <tr key={item.id} className="table-row">
-                  <td className="table-td font-medium text-slate-50">{item.devices?.name || '—'}</td>
-                  <td className="table-td"><span className="badge bg-slate-800/50 text-slate-400">{item.devices?.category}</span></td>
+                  <td className="table-td font-medium text-slate-900">{item.devices?.name || '—'}</td>
+                  <td className="table-td"><span className="badge bg-slate-50 text-slate-400">{item.devices?.category}</span></td>
                   <td className="table-td font-bold text-primary-600">{item.quantity}</td>
                   <td className="table-td text-slate-400">₹{Number(item.devices?.daily_price || 0).toLocaleString('en-IN')}/day</td>
-                  <td className="table-td font-semibold text-slate-200">
+                  <td className="table-td font-semibold text-slate-900">
                     ₹{(item.quantity * (item.devices?.daily_price || 0) * duration).toLocaleString('en-IN')}
                   </td>
                 </tr>
@@ -303,7 +303,7 @@ export default function ClientRequestDetail() {
       <div className="card p-6">
         <div className="flex items-center gap-2 mb-5">
           <Clock size={18} className="text-amber-600" />
-          <h2 className="font-bold text-slate-200">Activity History</h2>
+          <h2 className="font-bold text-slate-900">Activity History</h2>
         </div>
         <div className="relative">
           <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-slate-200" />
@@ -311,7 +311,7 @@ export default function ClientRequestDetail() {
             {history.map((h, i) => (
               <div key={h.id} className="flex items-start gap-4">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 z-10 relative
-                  ${i === history.length - 1 ? 'bg-primary-600' : 'bg-slate-800 border-2 border-slate-300'}`}>
+                  ${i === history.length - 1 ? 'bg-primary-600' : 'bg-white border-2 border-slate-300'}`}>
                   {i === history.length - 1
                     ? <CheckCircle size={16} className="text-white" />
                     : <span className="w-2 h-2 rounded-full bg-slate-400" />}
@@ -322,7 +322,7 @@ export default function ClientRequestDetail() {
                     <StatusBadge status={h.new_status} />
                   </div>
                   {h.admin_note && (
-                    <p className="text-sm text-slate-500 mt-1 italic">"{h.admin_note}"</p>
+                    <p className="text-sm text-slate-9000 mt-1 italic">"{h.admin_note}"</p>
                   )}
                   <p className="text-xs text-slate-400 mt-1">
                     {format(new Date(h.changed_at), 'dd MMM yyyy, hh:mm a')}
@@ -335,11 +335,11 @@ export default function ClientRequestDetail() {
       </div>
 
       {/* Contact Support */}
-      <div className="card p-6 bg-slate-900 border-dashed">
+      <div className="card p-6 bg-slate-50 border-dashed">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <p className="font-semibold text-slate-200">Have questions about this request?</p>
-            <p className="text-sm text-slate-400 mt-0.5">Reference your Request ID: <code className="bg-slate-800 px-2 py-0.5 rounded text-xs font-mono border">{id?.slice(0, 8).toUpperCase()}</code></p>
+            <p className="font-semibold text-slate-900">Have questions about this request?</p>
+            <p className="text-sm text-slate-400 mt-0.5">Reference your Request ID: <code className="bg-white px-2 py-0.5 rounded text-xs font-mono border">{id?.slice(0, 8).toUpperCase()}</code></p>
           </div>
           <a href="mailto:hello@corprental.com?subject=Query about Request"
             className="btn-secondary btn-sm flex-shrink-0">
@@ -351,8 +351,8 @@ export default function ClientRequestDetail() {
       {/* Signature Modal */}
       <Modal isOpen={signModal} onClose={() => setSignModal(false)} title="Sign Rental Agreement">
         <div className="space-y-4">
-          <div className="h-48 overflow-y-auto bg-slate-900 border border-slate-700 p-4 rounded-lg text-sm text-slate-400 space-y-3">
-            <h3 className="font-bold text-slate-200 mb-2">Terms and Conditions</h3>
+          <div className="h-48 overflow-y-auto bg-slate-50 border border-slate-200 p-4 rounded-lg text-sm text-slate-400 space-y-3">
+            <h3 className="font-bold text-slate-900 mb-2">Terms and Conditions</h3>
             <p>1. <strong>Equipment Condition:</strong> The equipment must be returned in the same condition as it was delivered, normal wear and tear excepted.</p>
             <p>2. <strong>Payment:</strong> The client agrees to pay the total quotation amount within 30 days of the invoice date.</p>
             <p>3. <strong>Liability:</strong> The client is fully responsible for any loss, theft, or damage to the equipment during the rental period.</p>
@@ -360,10 +360,10 @@ export default function ClientRequestDetail() {
             <p>5. <strong>Termination:</strong> CorpRentalPro reserves the right to terminate this agreement immediately if the client breaches any terms.</p>
           </div>
           
-          <label className="flex items-start gap-3 cursor-pointer p-3 bg-slate-800/50 rounded-lg border border-slate-700 hover:bg-slate-800 transition-colors">
-            <input type="checkbox" className="mt-1 w-4 h-4 rounded border-slate-600 bg-slate-900 text-primary-600 focus:ring-primary-500 focus:ring-offset-slate-800"
+          <label className="flex items-start gap-3 cursor-pointer p-3 bg-slate-50 rounded-lg border border-slate-200 hover:bg-white transition-colors">
+            <input type="checkbox" className="mt-1 w-4 h-4 rounded border-slate-600 bg-slate-50 text-primary-600 focus:ring-primary-500 focus:ring-offset-slate-800"
               checked={agreedTerms} onChange={e => setAgreedTerms(e.target.checked)} />
-            <span className="text-sm text-slate-300">
+            <span className="text-sm text-slate-700">
               I have read and agree to the Terms and Conditions above. I understand this constitutes a legally binding digital signature.
             </span>
           </label>
@@ -374,7 +374,7 @@ export default function ClientRequestDetail() {
               value={signatureName} onChange={e => setSignatureName(e.target.value)} />
           </div>
 
-          <div className="flex gap-3 justify-end pt-4 border-t border-slate-800">
+          <div className="flex gap-3 justify-end pt-4 border-t border-slate-100">
             <button onClick={() => setSignModal(false)} className="btn-secondary">Cancel</button>
             <button onClick={handleSignAgreement} disabled={saving || !agreedTerms || !signatureName} className="btn-primary">
               {saving ? <><Loader2 size={15} className="animate-spin" /> Signing...</> : 'Sign Agreement'}

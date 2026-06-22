@@ -132,7 +132,7 @@ export default function Requests() {
             </div>
           ) : (
             <table className="w-full">
-              <thead className="bg-slate-900 border-b border-slate-700">
+              <thead className="bg-slate-50 border-b border-slate-200">
                 <tr>
                   <th className="table-th">Request ID</th>
                   <th className="table-th">Company</th>
@@ -147,13 +147,13 @@ export default function Requests() {
                 {filtered.map(req => (
                   <tr key={req.id} className="table-row">
                     <td className="table-td">
-                      <code className="text-xs bg-slate-800/50 text-slate-400 px-2 py-0.5 rounded font-mono">
+                      <code className="text-xs bg-slate-50 text-slate-400 px-2 py-0.5 rounded font-mono">
                         {req.id.slice(0, 8)}...
                       </code>
                     </td>
                     <td className="table-td">
                       <div>
-                        <p className="font-semibold text-slate-50">{req.companies?.company_name}</p>
+                        <p className="font-semibold text-slate-900">{req.companies?.company_name}</p>
                         <p className="text-xs text-slate-400">{req.companies?.email}</p>
                       </div>
                     </td>
@@ -165,16 +165,16 @@ export default function Requests() {
                         </p>
                       </div>
                     </td>
-                    <td className="table-td text-slate-500 text-xs">
+                    <td className="table-td text-slate-9000 text-xs">
                       {format(new Date(req.created_at), 'dd MMM yyyy')}
                     </td>
                     <td className="table-td">
                       <StatusBadge status={req.status} />
                     </td>
-                    <td className="table-td font-semibold text-slate-200">
+                    <td className="table-td font-semibold text-slate-900">
                       {req.quotations?.[0]?.total_amount
                         ? `₹${Number(req.quotations[0].total_amount).toLocaleString('en-IN')}`
-                        : <span className="text-slate-300 font-normal">—</span>}
+                        : <span className="text-slate-700 font-normal">—</span>}
                     </td>
                     <td className="table-td">
                       <div className="flex items-center gap-2">
@@ -203,7 +203,7 @@ export default function Requests() {
 
         {/* Footer count */}
         {filtered.length > 0 && (
-          <div className="px-6 py-3 border-t border-slate-800 bg-slate-900 text-xs text-slate-400">
+          <div className="px-6 py-3 border-t border-slate-100 bg-slate-50 text-xs text-slate-400">
             Showing {filtered.length} of {requests.length} requests
           </div>
         )}
@@ -215,7 +215,7 @@ export default function Requests() {
           <div className="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-4">
             <Trash2 size={24} className="text-red-600" />
           </div>
-          <p className="text-slate-300 font-semibold mb-1">Delete request for "{deleteTarget?.companies?.company_name}"?</p>
+          <p className="text-slate-700 font-semibold mb-1">Delete request for "{deleteTarget?.companies?.company_name}"?</p>
           <p className="text-slate-400 text-sm mb-6">This action cannot be undone. All items associated with this request will also be deleted.</p>
           <div className="flex gap-3 justify-center">
             <button onClick={() => setDeleteModal(false)} className="btn-secondary">Cancel</button>
