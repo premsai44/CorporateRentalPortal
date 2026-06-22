@@ -17,6 +17,8 @@ import Quotations from './pages/admin/Quotations'
 import AdminKYC from './pages/admin/AdminKYC'
 import Logistics from './pages/admin/Logistics'
 import Returns from './pages/admin/Returns'
+import Billing from './pages/admin/Billing'
+import AdminSupport from './pages/admin/AdminSupport'
 
 // Client Layout & Pages
 import ClientLayout from './components/layout/ClientLayout'
@@ -24,6 +26,8 @@ import ClientDashboard from './pages/client/ClientDashboard'
 import ClientRequests from './pages/client/ClientRequests'
 import ClientRequestDetail from './pages/client/ClientRequestDetail'
 import ClientKYC from './pages/client/ClientKYC'
+import ClientBilling from './pages/client/ClientBilling'
+import ClientSupport from './pages/client/ClientSupport'
 
 // Loading spinner
 function FullPageLoader() {
@@ -101,6 +105,8 @@ function AppRoutes() {
         <Route path="kyc" element={<AdminKYC />} />
         <Route path="logistics" element={<Logistics />} />
         <Route path="returns" element={<Returns />} />
+        <Route path="billing" element={<Billing />} />
+        <Route path="support" element={<AdminSupport />} />
       </Route>
 
       {/* Client routes */}
@@ -112,6 +118,8 @@ function AppRoutes() {
         <Route path="requests" element={<ClientRequests />} />
         <Route path="requests/:id" element={<ClientRequestDetail />} />
         <Route path="kyc" element={<ClientKYC />} />
+        <Route path="billing" element={<ClientBilling />} />
+        <Route path="support" element={<ClientSupport />} />
       </Route>
 
       {/* Fallback */}

@@ -3,7 +3,8 @@ import { NavLink, useNavigate, Outlet } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import {
   LayoutDashboard, FileText, LogOut, Menu, X,
-  Monitor, ChevronRight, Building2, Bell, PlusCircle
+  Monitor, ChevronRight, Building2, Bell, PlusCircle, DollarSign, ShieldCheck,
+  MessageSquare
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
@@ -11,6 +12,8 @@ const navItems = [
   { to: '/client/dashboard', icon: LayoutDashboard, label: 'My Dashboard' },
   { to: '/client/requests', icon: FileText, label: 'My Requests' },
   { to: '/client/kyc', icon: Building2, label: 'KYC Documents' },
+  { to: '/client/billing', icon: DollarSign, label: 'Invoices & Billing' },
+  { to: '/client/support', icon: MessageSquare, label: 'IT Support' },
 ]
 
 export default function ClientLayout() {

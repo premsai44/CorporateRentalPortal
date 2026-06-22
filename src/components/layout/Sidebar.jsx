@@ -3,8 +3,8 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import {
   LayoutDashboard, FileText, Package, Receipt, ShieldCheck,
-  LogOut, Menu, X, Monitor, ChevronRight, Building2,
-  Truck, RotateCcw
+  LogOut, Menu, X, Monitor, ChevronRight, Building2, DollarSign,
+  Truck, RotateCcw, MessageSquare
 } from 'lucide-react'
 
 const navItems = [
@@ -13,6 +13,8 @@ const navItems = [
   { to: '/admin/kyc', icon: ShieldCheck, label: 'KYC Verification' },
   { to: '/admin/inventory', icon: Package, label: 'Inventory' },
   { to: '/admin/quotations', icon: Receipt, label: 'Quotations' },
+  { to: '/admin/billing', icon: DollarSign, label: 'Billing & Invoices' },
+  { to: '/admin/support', icon: MessageSquare, label: 'Helpdesk' },
   { to: '/admin/logistics', icon: Truck, label: 'Logistics' },
   { to: '/admin/returns', icon: RotateCcw, label: 'Returns' },
 ]
