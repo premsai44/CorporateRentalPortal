@@ -36,7 +36,7 @@ export default function ClientRequestDetail() {
 
   async function loadAll() {
     setLoading(true)
-    const [reqRes, itemsRes, histRes, quotRes] = await Promise.all([
+    const [reqRes, itemsRes, histRes, quotRes, agreeRes] = await Promise.all([
       supabase.from('rental_requests').select('*, companies(*)')
         .eq('id', id).eq('user_id', user.id).single(),
       supabase.from('request_items').select('*, devices(name, category, daily_price)').eq('request_id', id),
